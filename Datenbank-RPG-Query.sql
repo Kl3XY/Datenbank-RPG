@@ -53,9 +53,15 @@ create table enemy (
 	id int identity(1, 1) primary key,
 	name varchar(64),
 	life int default 100,
+	maxLife int default 100,
 	defense int default 20,
 	attackDelay int default 10,
 	attack int default 20
+);
+
+create table battle (
+	playerid int foreign key references player(id),
+	enemyid int foreign key references enemy(id)
 );
 
 create table player_graveyard (
@@ -85,17 +91,17 @@ insert into  item(name, itemType, itemPower, gold) values
 ('Revive Halo', 2, 120, 75);
 
 insert into  class(name, attackDelay, attack) values
-('Warrior', 2000, 125),
+('Warrior', 200, 125),
 ('Mage', 450, 40),
 ('Thief', 100, 2),
 ('Demon Hunter', 250, 30);
 
 insert into player(name, life, defense, classId, gold) values
-('KENT KARSON', 100, 125, 1, 125);
+('KENT KARSON', 100, 125, 1, 5000);
 
-insert into enemy(name, life, defense, attackDelay, attack) values
-('Goblin', 20, 5, 500, 5),
-('Iron Goblin', 40, 15, 1500, 45);
+insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
+('Goblin', 20, 20, 5, 500, 60),
+('Iron Golem', 40, 40, 15, 1500, 320);
 
 
 go 
@@ -139,4 +145,72 @@ as
 	select it.id, it.name, itName.name as itemname, it.itemPower, amount, it.gold from inventory
 	INNER JOIN item as it on inventory.itemId = it.id
 	INNER JOIN itemType as itName on it.itemType = itName.id
+go
+
+create procedure displayPlayers @id int
+as
+	IF @id != -1 
+	BEGIN
+		select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
+		INNER JOIN class as cl ON player.id = cl.id 
+		where player.id = @id
+	END
+	ELSE
+	BEGIN
+		select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
+		INNER JOIN class as cl ON player.id = cl.id;
+	END
+go
+
+create procedure displayEnemies @id int
+as
+	IF @id != -1 
+	BEGIN
+		select * from enemy where id = @id
+	END
+	ELSE
+	BEGIN
+		select * from enemy 
+	END
+go
+
+create procedure startBattle @playerid int, @enemyid int
+as
+	insert into battle(playerid, enemyid) values
+	(@playerid, @enemyid);
+go
+
+create procedure setPlayerHealth @playerid int, @health int
+as
+	update player
+	set life = @health
+	where id = @playerid;
+go
+
+create procedure setEnemyHealth @enemyid int, @health int
+as
+	update enemy
+	set life = @health
+	where id = @enemyid;
+go
+
+create procedure playerDead @playerId int, @enemyid int
+as
+	insert into player_graveyard values
+	(@playerId, @enemyid);
+go
+
+create procedure enemyDead @playerId int, @enemyid int
+as
+	insert into enemy_graveyard values
+	(@playerId, @enemyid);
+go
+
+create procedure useItem @itemId int
+as
+	update inventory
+	set amount = amount - 1
+	where itemId = @itemId;
+
+	delete from inventory where amount = 0;
 go

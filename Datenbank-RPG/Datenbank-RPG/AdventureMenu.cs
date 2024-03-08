@@ -37,25 +37,7 @@ namespace Datenbank_RPG
                 }
 
                 Console.WriteLine("You are at a camp, rest for now.");
-                ConsoleTable table = new ConsoleTable("Name", "Life", "Defense");
-                table.Options.EnableCount = false;
-                using (SqlCommand cmd = new SqlCommand("select * from player", Program.connection))
-                {
-                    DataTable data = new DataTable();
-                    var adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(data);
-                    foreach (DataRow row in data.Rows)
-                    {
-                        var basePlayer = new Player(row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["id"]), Convert.ToInt32(row["classId"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["maxlife"]));
-                        Program.players.Add(basePlayer);
-                    }
-                }
-                foreach (Player player in Program.players)
-                {
-                    table.AddRow(player.Name, player.Life, player.Defense);
-                }
-
-                table.Write();
+                SQL.drawPlayerList();
 
                 Console.WriteLine(" .. ........... .............  ........... . ..... ........ .......\r\n ......  ....................%.... .... ..... .........%............\r\n .@@@ ........ @@.... @@@@  . ............................  *  .....\r\n ....@@ ..... @ .... @ .............   ....... .....; .... *** .....\r\n .....\\@\\....@ .... @ ............................. #  .. *****  ...\r\n  @@@.. @@@@@  @@@@@@___.. ....... ...%..... ...  {###}  *******\r\n ....@-@..@ ..@......@@@\\...... %...... ....... <## ####>********\r\n   @@@@\\...@ @ ........\\@@@@ ..... ...... ....... {###}***********\r\n ....%..@  @@ /@@@@@ . ....... ...............<###########> *******\r\n ...... .@-@@@@ ...V......     .... %.......... {#######}******* ***\r\n ...... .  @@ .. ..v.. .. . { } ............<###############>*******\r\n ......... @@ .... ........ {^^,     .......   {## ######}***** ****\r\n ..%..... @@ .. .%.... . .. (   `-;   ... <###################> ****\r\n . .... . @@ . .... .. _  .. `;;~~ ......... {#############}********\r\n .... ... @@ ... ..   /(______); .. ....<################  #####>***\r\n . .... ..@@@ ...... (         (  .........{##################}*****\r\n ......... @@@  ....  |:------( )  .. <##########################>**\r\n  @@@@ ....@@@  ... _// ...... \\\\ ...... {###   ##############}*****\r\n @@@@@@@  @@@@@ .. / /@@@@@@@@@ vv  <##############################>\r\n @@@@@@@ @@@@@@@ @@@@@@@@@@@@@@@@@@@ ..... @@@@@@  @@@@@@@  @@@@\r\n @@@@@@###@@@@@### @@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n @@@@@@@@###@##@@ @@@@@@@@@@@@@@@@@@@@@ @@@@@   @@@@@@@@@@@@@@@@@@@\r\n @@@@@@@@@@@### @@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@\r\n -@@@@@@@@@#####@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                     
@@ -153,8 +135,13 @@ namespace Datenbank_RPG
                             break;
                         case '¶':
                             var choose = new Random().Next(0, Program.players.Count-1);
-                            Console.WriteLine("{0} has encountered a Goblin!", Program.players[choose].Name);
-                            Console.ReadKey();
+                            Combat_Screen.idOfChosenPlayer = Program.players[choose].Id;
+                            Combat_Screen.loopSection = true;
+                            Console.Clear();
+                            SQL.chooseEnemy();
+
+                            Console.WriteLine("{0} has encountered a {1}!", Program.players[choose].Name, Combat_Screen.enemies.Find(d => d.Id == Combat_Screen.idOfChosenEnemy).Name);
+                            Combat_Screen.Menu();
                             break;
                     }
                 }

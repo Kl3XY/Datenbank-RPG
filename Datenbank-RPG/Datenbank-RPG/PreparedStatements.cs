@@ -67,6 +67,50 @@ namespace Datenbank
 
             statements.Add(("displayInventory", displayInventoryCommand));
 
+            /* displayPlayers */
+
+            var displayPlayersCommand = new SqlCommand("exec displayPlayers @id = @i", Program.connection);
+            displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+            displayPlayersCommand.Parameters[0].Value = -1;
+
+            statements.Add(("displayPlayers", displayPlayersCommand));
+
+            /* displayEnemy */
+
+            var displayEnemyCommand = new SqlCommand("exec displayEnemies @id = @i", Program.connection);
+            displayEnemyCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+            displayEnemyCommand.Parameters[0].Value = -1;
+
+            statements.Add(("displayEnemy", displayEnemyCommand));
+
+            /* SET PLAYER HEALTH */
+
+            var setPlayerHealthCommand = new SqlCommand("exec setPlayerHealth @playerid = @i, @health = @h", Program.connection);
+            setPlayerHealthCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+            setPlayerHealthCommand.Parameters[0].Value = -1;
+            setPlayerHealthCommand.Parameters.Add(new SqlParameter("@h", System.Data.SqlDbType.Int));
+            setPlayerHealthCommand.Parameters[0].Value = -1;
+
+            statements.Add(("setPlayerHealth", setPlayerHealthCommand));
+
+            /* SET ENEMY HEALTH */
+
+            var setEnemyHealthCommand = new SqlCommand("exec setEnemyHealth @enemyid = @i, @health = @h", Program.connection);
+            setEnemyHealthCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+            setEnemyHealthCommand.Parameters[0].Value = -1;
+            setEnemyHealthCommand.Parameters.Add(new SqlParameter("@h", System.Data.SqlDbType.Int));
+            setEnemyHealthCommand.Parameters[0].Value = -1;
+
+            statements.Add(("setEnemyHealth", setEnemyHealthCommand));
+
+            /* USE ITEM */
+
+            var useItemHealthCommand = new SqlCommand("exec useItem @itemId = @i", Program.connection);
+            useItemHealthCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+            useItemHealthCommand.Parameters[0].Value = -1;
+
+            statements.Add(("useItem", useItemHealthCommand));
+
         }
 
         public static SqlCommand getStatement(string searchTerm)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Datenbank-RPG")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e13eb6180e512c72b5c786f20003ee46286a3ee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7042c0c8b3ede779bb7c26cff2eaa0b0577b930")]
 [assembly: System.Reflection.AssemblyProductAttribute("Datenbank-RPG")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Datenbank-RPG")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

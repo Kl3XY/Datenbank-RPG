@@ -14,10 +14,13 @@ namespace Datenbank_RPG
         public int Defense { get; set; }
         public int Id { get; set; }
         public int playerClass { get; set; }
+        public string playerClassName { get; set; }
         public int Attack { get; set; }
+        public int atkDelay { get; set; }
+        public int currentAtkDelay { get; set; }
         public int Gold { get; set; }
 
-        public Player(string nm, int l, int d, int id, int pClass, int g, int ml) { 
+        public Player(string nm, int l, int d, int id, int pClass, int g, int ml, int attack, int attackDelay, string pClassName) { 
             Name = nm;
             Life = l;
             Defense = d;
@@ -25,24 +28,32 @@ namespace Datenbank_RPG
             playerClass = pClass;
             Gold = g;
             MaxLife = ml;
+            Attack = attack;
+            atkDelay = attackDelay;
+            currentAtkDelay = attackDelay;
+            playerClassName = pClassName;
         }
     }
 
-    internal class Enemy
+    public class Enemy
     {
         public string Name { get; set; }
         public int Life { get; set; }
+        public int maxLife { get; set; }
         public int Defense { get; set; }
         public int Id { get; set; }
-        public int playerClass { get; set; }
+        public int atk { get; set; }
+        public int atkDelay { get; set; }
 
-        public Enemy(string nm, int l, int d, int id, int pClass)
+        public Enemy(int id, string nm, int l, int d, int atk, int atkDelay, int maxLife)
         {
             Name = nm;
             Life = l;
+            this.maxLife = maxLife;
             Defense = d;
             Id = id;
-            playerClass = pClass;
+            this.atk = atk;
+            this.atkDelay = atkDelay;
         }
     }
 }
