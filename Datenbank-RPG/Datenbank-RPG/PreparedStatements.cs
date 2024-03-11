@@ -33,6 +33,37 @@ namespace Datenbank
 
             statements.Add(("addPlayer", addPlayerCommand));
 
+            /* sort inventory by amount */
+
+            var sortInventoryCommand = new SqlCommand("exec sortInventoryByAmount", Program.connection);
+
+            statements.Add(("sortInventoryByAmount", sortInventoryCommand));
+
+            /* give Gold */
+
+            var giveGoldCommand = new SqlCommand("exec giveGold @id = @i, @amount = @a", Program.connection);
+            giveGoldCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.VarChar, 64));
+            giveGoldCommand.Parameters[0].Value = 1;
+
+            giveGoldCommand.Parameters.Add(new SqlParameter("@a", System.Data.SqlDbType.VarChar, 64));
+            giveGoldCommand.Parameters[1].Value = 99999;
+
+            statements.Add(("giveGold", giveGoldCommand));
+
+            /* sort Player By Gold */
+
+            var sortPlayerByGoldCommand = new SqlCommand("exec sortPlayerByGold", Program.connection);
+
+            statements.Add(("sortPlayerByGold", sortPlayerByGoldCommand));
+
+            /* SEARCH PLAYER */
+
+            var searchPlayerCommand = new SqlCommand("exec searchPlayer @search = @s", Program.connection);
+            searchPlayerCommand.Parameters.Add(new SqlParameter("@s", System.Data.SqlDbType.VarChar, 64));
+            searchPlayerCommand.Parameters[0].Value = "";
+
+            statements.Add(("searchPlayer", searchPlayerCommand));
+
             /* LIST ALL ITEMS */
 
             var listAllItemsCommand = new SqlCommand("exec list_all_items", Program.connection);
@@ -60,6 +91,44 @@ namespace Datenbank
             addItemCommand.Parameters[0].Value = 0;
 
             statements.Add(("addItem", addItemCommand));
+
+            /* PLAYER DEAD */
+
+            var playerDeadCommand = new SqlCommand("exec playerDead @playerId = @pid, @enemyid = @eid", Program.connection);
+            playerDeadCommand.Parameters.Add(new SqlParameter("@pid", System.Data.SqlDbType.Int));
+            playerDeadCommand.Parameters[0].Value = 0;
+
+            playerDeadCommand.Parameters.Add(new SqlParameter("@eid", System.Data.SqlDbType.Int));
+            playerDeadCommand.Parameters[1].Value = 0;
+
+            statements.Add(("playerDead", playerDeadCommand));
+
+            /* ENEMY DEAD */
+
+            var enemyDeadCommand = new SqlCommand("exec enemyDead @playerId = @pid, @enemyid = @eid", Program.connection);
+            enemyDeadCommand.Parameters.Add(new SqlParameter("@pid", System.Data.SqlDbType.Int));
+            enemyDeadCommand.Parameters[0].Value = 0;
+
+            enemyDeadCommand.Parameters.Add(new SqlParameter("@eid", System.Data.SqlDbType.Int));
+            enemyDeadCommand.Parameters[1].Value = 0;
+
+            statements.Add(("enemyDead", enemyDeadCommand));
+
+            /* DISPLAY PLAYER GRAVEYARD */
+
+            var displayPlayerGraveyardCommand = new SqlCommand("exec displayPlayerGraveyard @id = @idd", Program.connection);
+            displayPlayerGraveyardCommand.Parameters.Add(new SqlParameter("@idd", System.Data.SqlDbType.Int));
+            displayPlayerGraveyardCommand.Parameters[0].Value = 0;
+
+            statements.Add(("displayPlayerGraveyard", displayPlayerGraveyardCommand));
+
+            /* DISPLAY ENEMY GRAVEYARD */
+
+            var displayEnemyGraveyardCommand = new SqlCommand("exec displayEnemyGraveyard @id = @idd", Program.connection);
+            displayEnemyGraveyardCommand.Parameters.Add(new SqlParameter("@idd", System.Data.SqlDbType.Int));
+            displayEnemyGraveyardCommand.Parameters[0].Value = 0;
+
+            statements.Add(("displayEnemyGraveyard", displayEnemyGraveyardCommand));
 
             /* DISPLAY INVENTORY */
 

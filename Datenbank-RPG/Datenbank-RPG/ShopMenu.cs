@@ -26,7 +26,7 @@ namespace Datenbank_RPG
                 SQL.drawPlayerList();
                 SQL.initShop();
 
-                Console.WriteLine("Use the up and down to traverse the menu. (Press ESC to exit)");
+                Console.WriteLine("Use the up and down to traverse the menu. And enter to Confirm. (Press ESC to exit)");
                 Console.WriteLine("You currently have {0} Gold in your group.", generalGoldAmount);
 
                 var key = Console.ReadKey().Key;
@@ -39,7 +39,7 @@ namespace Datenbank_RPG
                 {
                     if (menuSelect-- < 1) { menuSelect = items.Count-1; }
                 }
-                if (key.ToString() == "Spacebar")
+                if (key.ToString() == "Enter")
                 {
                     if (items[menuSelect].Gold <= generalGoldAmount)
                     {

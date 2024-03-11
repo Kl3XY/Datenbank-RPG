@@ -11,6 +11,7 @@ internal class Program
     public static List<Player> players = new();
     public static List<Enemy> enemies = new();
     public static SqlConnection connection = null;
+    public static Random rng = new();
 
     public static int menuSelect = 0;
 
@@ -18,7 +19,7 @@ internal class Program
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-        builder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
+        builder.ConnectionString = $"Server=(localDB)\\MSSQLLocaldb;Database=game;Integrated Security=True;TrustServerCertificate=true";
 
         using (connection = new SqlConnection(builder.ConnectionString))
         {
@@ -33,17 +34,17 @@ internal class Program
             while (true)
             {
                 Console.WriteLine("You are at a camp, rest for now.");
+
                 SQL.drawPlayerList();
 
                 Console.WriteLine("        ______\r\njgs    /     /\\\r\n      /     /  \\\r\n     /_____/----\\_    (  \r\n    \"     \"          ).  \r\n   _ ___          o (:') o   \r\n  (@))_))        o ~/~~\\~ o   \r\n                  o  o  o");
                 Console.WriteLine();
-
                 ConsoleTable menu = new ConsoleTable();
                 menu.Options.EnableCount = false;
 
-                var menuOptions = new string[] {"Adventure", "Inventory", "Shop"};
+                var menuOptions = new string[] {"Adventure", "Inventory", "Shop", "Statistics" };
 
-                for(var i = 0; i < 3; i++)
+                for(var i = 0; i < menuOptions.Length; i++)
                 {
                     if (i == menuSelect) {
                         menuOptions[i] = ">" + menuOptions[i] + "<";
@@ -51,19 +52,19 @@ internal class Program
                 }
                 menu.AddColumn(menuOptions);
                 menu.Write();
-                Console.WriteLine("Use the left and right arrow key to traverse the menu.");
+                Console.WriteLine("Use the left and right arrow key to traverse the menu. And enter to Confirm.");
                 
                 var key = Console.ReadKey().Key;
 
                 if (key.ToString() == "RightArrow")
                 {
-                    if (menuSelect++ > 1) { menuSelect = 0; }
+                    if (menuSelect++ > menuOptions.Length-2) { menuSelect = 0; }
                 }
                 if (key.ToString() == "LeftArrow")
                 {
-                    if (menuSelect-- < 1) { menuSelect = 2; }
+                    if (menuSelect-- < 1) { menuSelect = menuOptions.Length - 1; }
                 }
-                if (key.ToString() == "Spacebar")
+                if (key.ToString() == "Enter")
                 {
                     switch (menuSelect) {
                         case 0:
@@ -83,6 +84,12 @@ internal class Program
                             players.Clear();
                             ShopMenu.loopSection = true;
                             ShopMenu.Menu();
+                            break;
+                        case 3:
+                            Console.Clear();
+                            players.Clear();
+                            Statistics.loopSection = true;
+                            Statistics.Menu();
                             break;
                     } 
                 }

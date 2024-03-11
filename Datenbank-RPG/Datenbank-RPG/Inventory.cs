@@ -28,7 +28,7 @@ namespace Datenbank_RPG
                 SQL.drawPlayerList();
                 SQL.displayInventory();
 
-                Console.WriteLine("Use the up and down to traverse the menu.  (Press ESC to exit)");
+                Console.WriteLine("Use the up and down to traverse the menu. And enter to Confirm. (Press ESC to exit)");
                 Console.WriteLine("You currently have {0} Gold in your group.", generalGoldAmount);
 
                 var key = Console.ReadKey().Key;
@@ -41,7 +41,7 @@ namespace Datenbank_RPG
                 {
                     if (menuSelect-- < 1) { menuSelect = items.Count - 1; }
                 }
-                if (key.ToString() == "Spacebar")
+                if (key.ToString() == "Enter")
                 {
                     in_submenu = true;
                     selectedItemId = items[menuSelect].Id;
@@ -52,30 +52,30 @@ namespace Datenbank_RPG
                     while (in_submenu)
                     {
                         Console.Clear();
-                        Console.WriteLine("Select who gets the {0}", items[menuSelect].Name);
+                        Console.WriteLine("Select who gets the {0}", items[selectedItemList].Name);
                         SQL.drawPlayerListSelectInventory();
 
                         key = Console.ReadKey().Key;
 
                         if (key.ToString() == "DownArrow")
                         {
-                            if (menuSelect++ > items.Count - 2) { menuSelect = 0; }
+                            if (menuSelect++ > Program.players.Count - 2) { menuSelect = 0; }
                         }
                         if (key.ToString() == "UpArrow")
                         {
-                            if (menuSelect-- < 1) { menuSelect = items.Count - 1; }
+                            if (menuSelect-- < 1) { menuSelect = Program.players.Count - 1; }
                         }
 
-                        if (key.ToString() == "Spacebar")
+                        if (key.ToString() == "Enter")
                         {
-                            switch (items[menuSelect].ItemType)
+                            switch (items[selectedItemList].ItemType)
                             {
                                 case "Health Potion":
                                     if (Program.players[menuSelect].Life > 0)
                                     {
                                         var cmd = prepared_statement.getStatement("setPlayerHealth");
                                         cmd.Parameters[0].Value = Program.players[menuSelect].Id;
-                                        cmd.Parameters[1].Value = Math.Min(Program.players[menuSelect].Life + items[menuSelect].ItemPower/3, Program.players[menuSelect].MaxLife);
+                                        cmd.Parameters[1].Value = Math.Min(Program.players[menuSelect].Life + items[selectedItemList].ItemPower/3, Program.players[menuSelect].MaxLife);
                                         cmd.ExecuteNonQuery();
 
                                         var cmdUseItem = prepared_statement.getStatement("useItem");
@@ -108,6 +108,7 @@ namespace Datenbank_RPG
                                     }
                                     break;
                             }
+                            menuSelect = selectedItemId;
                         }
 
                         if (key.ToString() == "Escape")

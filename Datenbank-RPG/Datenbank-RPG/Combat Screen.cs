@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,10 +41,10 @@ namespace Datenbank_RPG
                 var enemy = enemies.Find(d => d.Id == idOfChosenEnemy);
                 playerAttackDelay = player.atkDelay;
                 enemyAttackDelay = enemy.atkDelay;
-                playerCurrentAttackDelay -= 10;
-                enemyCurrentAttackDelay -= 10;
-                
-                var rnd = new Random();
+                playerCurrentAttackDelay -= 100;
+                enemyCurrentAttackDelay -= 100;
+
+                var rnd = Program.rng;
 
                 if (playerCurrentAttackDelay < 0)
                 {
@@ -79,22 +80,48 @@ namespace Datenbank_RPG
                     }
                 }
 
-                if (player.Life < 0)
+                if (player.Life <= 0)
                 {
                     loopSection = false;
                     Console.WriteLine("{0} Has Died...", player.Name);
                     Console.ReadKey();
+                    combatLog.Clear();
+
+                    var cmd = prepared_statement.getStatement("playerDead");
+                    cmd.Parameters[0].Value = player.Id;
+                    cmd.Parameters[1].Value = enemy.Id;
+                    cmd.ExecuteNonQuery();
                 }
-                if (enemy.Life < 0)
+                if (enemy.Life <= 0)
                 {
                     var cmd = prepared_statement.getStatement("setEnemyHealth");
                     cmd.Parameters[0].Value = enemy.Id;
                     cmd.Parameters[1].Value = enemy.maxLife;
 
+                    var cmd2 = prepared_statement.getStatement("enemyDead");
+                    cmd2.Parameters[0].Value = player.Id;
+                    cmd2.Parameters[1].Value = enemy.Id;
+                    cmd2.ExecuteNonQuery();
+
+                    var goldObtained = Program.rng.Next(50);
+                    var cmd3 = prepared_statement.getStatement("giveGold");
+                    cmd3.Parameters[0].Value = player.Id;
+                    cmd3.Parameters[1].Value = goldObtained;
+                    cmd3.ExecuteNonQuery();
+
                     loopSection = false;
                     Console.WriteLine("{1} has killed {0}!", enemy.Name, player.Name);
+                    Console.WriteLine("{1} Obtained {0} Gold!", goldObtained, player.Name);
+
+                    if (Program.rng.Next(100) < 5) { 
+                        Console.WriteLine("Found Minor Health Potion!"); 
+                        var cmd4 = prepared_statement.getStatement("addItem");
+                        cmd4.Parameters[0].Value = 1;
+                    }
+
                     Console.ReadKey();
                     cmd.ExecuteNonQuery();
+                    combatLog.Clear();
                 }
 
 

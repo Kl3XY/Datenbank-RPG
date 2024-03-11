@@ -45,9 +45,11 @@ create table player (
 	life int default 100,
 	maxlife int default 100,
 	defense int default 20,
-	gold int default 1,
+	gold int default 0,
 	classId int foreign key references class(id)
 );
+CREATE INDEX playerName
+ON player(name); 
 
 create table enemy (
 	id int identity(1, 1) primary key,
@@ -65,12 +67,12 @@ create table battle (
 );
 
 create table player_graveyard (
-	playerId int foreign key references class(id),
+	playerId int foreign key references player(id),
 	enemyId int foreign key references enemy(id),
 );
 
 create table enemy_graveyard (
-	playerId int foreign key references class(id),
+	playerId int foreign key references player(id),
 	enemyId int foreign key references enemy(id), 
 );
 
@@ -92,17 +94,20 @@ insert into  item(name, itemType, itemPower, gold) values
 
 insert into  class(name, attackDelay, attack) values
 ('Warrior', 200, 125),
-('Mage', 450, 40),
-('Thief', 100, 2),
-('Demon Hunter', 250, 30);
+('Mage', 450, 300),
+('Thief', 100, 50),
+('Demon Hunter', 250, 80);
 
-insert into player(name, life, defense, classId, gold) values
-('KENT KARSON', 100, 125, 1, 5000);
+insert into player(name, life, maxlife, defense, classId, gold) values
+('KENT KARSON', 50, 50, 20, 1, 20);
 
 insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
 ('Goblin', 20, 20, 5, 500, 60),
-('Iron Golem', 40, 40, 15, 1500, 320);
-
+('Iron Golem', 40, 40, 15, 1500, 320),
+('Thief', 5, 5, 5, 100, 20),
+('Bandit', 25, 25, 5, 750, 180),
+('Robot', 15, 15, 5, 2500, 800),
+('Steel Plated Bomb', 120, 120, 15, 10000, 1000);
 
 go 
 
@@ -152,13 +157,13 @@ as
 	IF @id != -1 
 	BEGIN
 		select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
-		INNER JOIN class as cl ON player.id = cl.id 
+		INNER JOIN class as cl ON player.classId = cl.id 
 		where player.id = @id
 	END
 	ELSE
 	BEGIN
 		select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
-		INNER JOIN class as cl ON player.id = cl.id;
+		INNER JOIN class as cl ON player.classId = cl.id;
 	END
 go
 
@@ -172,12 +177,6 @@ as
 	BEGIN
 		select * from enemy 
 	END
-go
-
-create procedure startBattle @playerid int, @enemyid int
-as
-	insert into battle(playerid, enemyid) values
-	(@playerid, @enemyid);
 go
 
 create procedure setPlayerHealth @playerid int, @health int
@@ -214,3 +213,67 @@ as
 
 	delete from inventory where amount = 0;
 go
+
+create procedure searchPlayer @search varchar(64)
+as
+	select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
+	INNER JOIN class as cl ON player.classId = cl.id
+	where player.name like @search + '%';
+go
+
+create procedure sortInventoryByAmount
+as
+	select it.id, it.name, amount from inventory
+	INNER JOIN item as it on inventory.itemId = it.id
+	INNER JOIN itemType as itName on it.itemType = itName.id
+	order by amount DESC
+go
+
+create procedure sortPlayerByGold
+as
+	select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
+	INNER JOIN class as cl ON player.classId = cl.id
+	order by gold DESC
+go
+
+create procedure displayPlayerGraveyard @id int
+as
+	select plr.name as 'Hero', enm.name as 'Has been slain by' from player_graveyard
+	inner join player as plr on id = playerId
+	inner join enemy as enm on enm.id = enemyId
+	where playerId = @id;
+go
+
+create procedure displayEnemyGraveyard @id int
+as
+	select enm.name as 'Enemy', plr.name as 'Has been slain by', COUNT(*) as 'Amount of times Slain' from enemy_graveyard
+	inner join player as plr on id = playerId
+	inner join enemy as enm on enm.id = enemyId
+	where playerId = @id
+	group by enm.name, plr.name;
+go
+
+create procedure mostKilledEnemy
+as
+	select enm.name as 'Enemy', COUNT(*) as 'Amount of times Slain' from enemy_graveyard
+	inner join enemy as enm on enm.id = enemyId
+	group by enm.name
+	order by COUNT(*) DESC;
+go
+
+create procedure mostKilledPlayer
+as
+	select plr.name as 'Player', COUNT(*) as 'Amount of times Slain' from player_graveyard
+	inner join player as plr on plr.id = enemyId
+	group by plr.name
+	order by COUNT(*) DESC;
+go
+
+create procedure giveGold @id int, @amount int
+as
+	update player
+	set gold = gold + @amount
+	where @id = id;
+go
+
+select * from enemy

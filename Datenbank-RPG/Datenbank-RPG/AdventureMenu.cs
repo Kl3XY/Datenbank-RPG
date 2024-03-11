@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RandomNameGenerator;
 
 namespace Datenbank_RPG
 {
@@ -56,7 +57,7 @@ namespace Datenbank_RPG
                 }
                 menu.AddColumn(menuOptions);
                 menu.Write();
-                Console.WriteLine("Use the left and right arrow key to traverse the menu. (Press ESC to exit)");
+                Console.WriteLine("Use the left and right arrow key to traverse the menu. And enter to Confirm. (Press ESC to exit)");
 
                 var key = Console.ReadKey().Key;
 
@@ -73,7 +74,7 @@ namespace Datenbank_RPG
                     loopSection = false;
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                if (key.ToString() == "Spacebar")
+                if (key.ToString() == "Enter")
                 {
                     switch (menuSelect)
                     {
@@ -105,8 +106,9 @@ namespace Datenbank_RPG
             for (var i = 0; i < turns; i++)
             {
                 var sym = ".";
-                var rnd = new Random();
+                var rnd = Program.rng;
                 if (rnd.Next(100) < 5) { sym = "¥"; }
+                if (rnd.Next(100) < 1) { sym = "!"; }
                 if (rnd.Next(100) < 10) { sym = "¶"; }
                 scenery += sym;
             }
@@ -116,6 +118,13 @@ namespace Datenbank_RPG
             {
                 Console.WriteLine("Your party is traveling! (Turns Left: {0})", turns);
                 SQL.drawPlayerList();
+
+                var isPartyAlive = false;
+                for (var i = 0; i < Program.players.Count; i++) 
+                {
+                    if (Program.players[i].Life > 0) { isPartyAlive = true;  }
+                }
+                if (!isPartyAlive) { Console.WriteLine("GAMEOVER. Your Party has Died."); Console.ReadKey(); break; };
 
                 scenery = scenery.Substring(1);
 
@@ -134,14 +143,36 @@ namespace Datenbank_RPG
 
                             break;
                         case '¶':
-                            var choose = new Random().Next(0, Program.players.Count-1);
+                            var choose = Program.rng.Next(0, Program.players.Count);
+                            while (Program.players[choose].Life <= 0)
+                            {
+                                choose = Program.rng.Next(0, Program.players.Count);
+                            }
+
+                            SQL.chooseEnemy();
                             Combat_Screen.idOfChosenPlayer = Program.players[choose].Id;
                             Combat_Screen.loopSection = true;
+                            Combat_Screen.enemyAttackDelay = Combat_Screen.enemies.Find(d => d.Id == Combat_Screen.idOfChosenEnemy).atkDelay;
+                            Combat_Screen.enemyCurrentAttackDelay = Combat_Screen.enemies.Find(d => d.Id == Combat_Screen.idOfChosenEnemy).atkDelay;
                             Console.Clear();
-                            SQL.chooseEnemy();
+
 
                             Console.WriteLine("{0} has encountered a {1}!", Program.players[choose].Name, Combat_Screen.enemies.Find(d => d.Id == Combat_Screen.idOfChosenEnemy).Name);
                             Combat_Screen.Menu();
+                            break;
+                        case '!':
+                            int rnd = Program.rng.Next(1);
+                            var GenerateName = NameGenerator.Generate((Gender)rnd);
+
+                            Console.WriteLine("{0} has entered the party!\nPress any key to enter.", GenerateName);
+                            var cmd = prepared_statement.getStatement("addPlayer");
+                            cmd.Parameters[0].Value = GenerateName;
+                            cmd.Parameters[1].Value = (int)Program.rng.Next(100);
+                            cmd.Parameters[2].Value = 20;
+                            cmd.Parameters[3].Value = (int)Program.rng.Next(1, 4);
+
+                            cmd.ExecuteNonQuery();
+                            Console.ReadKey();
                             break;
                     }
                 }
