@@ -19,7 +19,7 @@ internal class Program
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-        builder.ConnectionString = $"Server=(localDB)\\MSSQLLocaldb;Database=game;Integrated Security=True;TrustServerCertificate=true";
+        builder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
 
         using (connection = new SqlConnection(builder.ConnectionString))
         {

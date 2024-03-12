@@ -276,4 +276,29 @@ as
 	where @id = id;
 go
 
-select * from enemy
+create procedure addEnemy @name varchar(64), @life int, @defense int, @attackDelay int, @attack int
+as
+	insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
+	(@name, @life, @life, @defense, @attackDelay, @attack);
+go
+
+create procedure updateEnemy @id int, @name varchar(64), @life int, @maxlife int, @defense int, @attackDelay int, @attack int
+as
+	update enemy
+	set 
+	name = @name,
+	life = @life,
+	maxlife = @maxlife,
+	defense = @defense,
+	attackDelay = @attackDelay,
+	attack = @attack
+	where id = @id;
+
+	insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
+	(@name, @life, @life, @defense, @attackDelay, @attack);
+go
+
+create procedure removeEnemy @id int
+as
+	Delete from enemy where @id = id;
+go

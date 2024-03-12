@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\shopmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\shopmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\adventuremenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\adventuremenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\combat screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\combat screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,28 +31,8 @@
       "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\preparedstatements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\combat screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\combat screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\sql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\sql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\adventuremenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\adventuremenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\shopmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|solutionrelative:datenbank-rpg\\shopmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}|Datenbank-RPG\\Datenbank-RPG.csproj|c:\\users\\martin\\documents\\datenbank-rpg\\datenbank-rpg\\datenbank-rpg\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
@@ -59,12 +59,11 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwBcAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T14:34:58.677Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "SQL.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\SQL.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\SQL.cs",
@@ -73,18 +72,17 @@
               "ViewState": "AQIAADYAAAAAAAAAAADwvzcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T13:51:50.58Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Inventory.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Inventory.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\Inventory.cs",
               "ToolTip": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Inventory.cs",
               "RelativeToolTip": "Datenbank-RPG\\Inventory.cs",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAIwGMAAABXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFwAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T15:49:54.547Z",
               "IsPinned": true,
@@ -92,33 +90,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Combat Screen.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Combat Screen.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\Combat Screen.cs",
               "ToolTip": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Combat Screen.cs",
               "RelativeToolTip": "Datenbank-RPG\\Combat Screen.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAgwEQAAAAYAAAA",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAgwEQAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T16:40:16.847Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "ShopMenu.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\ShopMenu.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\ShopMenu.cs",
               "ToolTip": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\ShopMenu.cs",
               "RelativeToolTip": "Datenbank-RPG\\ShopMenu.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwB0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T14:29:52.772Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "AdventureMenu.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\AdventureMenu.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\AdventureMenu.cs",
@@ -131,20 +129,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Player.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\Player.cs",
               "ToolTip": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Player.cs",
               "RelativeToolTip": "Datenbank-RPG\\Player.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAcwC8AAAAqAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAcwC8AAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T12:24:36.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "PreparedStatements.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\PreparedStatements.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\PreparedStatements.cs",
@@ -152,18 +150,17 @@
               "RelativeToolTip": "Datenbank-RPG\\PreparedStatements.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAADwv28AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T12:18:37.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T12:18:37.31Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Program.cs",
               "RelativeDocumentMoniker": "Datenbank-RPG\\Program.cs",
               "ToolTip": "C:\\Users\\Martin\\Documents\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Program.cs",
               "RelativeToolTip": "Datenbank-RPG\\Program.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwEcAAAApAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T10:08:42.955Z",
               "EditorCaption": ""
