@@ -46,8 +46,11 @@ create table player (
 	maxlife int default 100,
 	defense int default 20,
 	gold int default 0,
-	classId int foreign key references class(id)
+	classId int
 );
+
+alter table player add constraint classRestraint foreign key (classId) references class(id);
+
 CREATE INDEX playerName
 ON player(name); 
 
@@ -302,3 +305,15 @@ create procedure removeEnemy @id int
 as
 	Delete from enemy where @id = id;
 go
+
+create procedure deleteClass @id int
+as
+	alter table player nocheck constraint classRestraint;
+
+	Delete from class where @id = id;
+
+	alter table player check constraint classRestraint;
+go
+
+exec deleteClass @id = 1;
+
