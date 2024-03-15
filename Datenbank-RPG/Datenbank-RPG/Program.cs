@@ -5,6 +5,7 @@ using RandomNameGenerator;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
+using System.Transactions;
 
 internal class Program
 {
@@ -19,7 +20,10 @@ internal class Program
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-        builder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
+        Console.WriteLine("Enter your connection string: ");
+        var connectString = Console.ReadLine();
+
+        builder.ConnectionString = $"Server={connectString};Database=game;Integrated Security=True;TrustServerCertificate=true";
 
         using (connection = new SqlConnection(builder.ConnectionString))
         {
@@ -37,7 +41,7 @@ internal class Program
 
                 SQL.drawPlayerList();
 
-                Console.WriteLine("        ______\r\njgs    /     /\\\r\n      /     /  \\\r\n     /_____/----\\_    (  \r\n    \"     \"          ).  \r\n   _ ___          o (:') o   \r\n  (@))_))        o ~/~~\\~ o   \r\n                  o  o  o");
+                Console.WriteLine("        ______\r\n       /     /\\\r\n      /     /  \\\r\n     /_____/----\\_    (  \r\n    \"     \"          ).  \r\n   _ ___          o (:') o   \r\n  (@))_))        o ~/~~\\~ o   \r\n                  o  o  o");
                 Console.WriteLine();
                 ConsoleTable menu = new ConsoleTable();
                 menu.Options.EnableCount = false;

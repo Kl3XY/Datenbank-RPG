@@ -54,6 +54,9 @@ alter table player add constraint classRestraint foreign key (classId) reference
 CREATE INDEX playerName
 ON player(name); 
 
+CREATE INDEX playerID
+ON player(id); 
+
 create table enemy (
 	id int identity(1, 1) primary key,
 	name varchar(64),
@@ -81,9 +84,11 @@ create table enemy_graveyard (
 
 
 create table inventory (
-	itemId int foreign key references item(id),
+	itemId int ,
 	amount int
 );
+
+alter table inventory add constraint itemRestraint foreign key (itemId) references item(id);
 
 insert into  itemType(name) values
 ('Health Potion'),
@@ -315,5 +320,27 @@ as
 	alter table player check constraint classRestraint;
 go
 
-exec deleteClass @id = 1;
+create procedure createItem @name varchar(64), @itemtype int, @itemPower int, @gold int
+as
+	insert into  item(name, itemType, itemPower, gold) values
+	(@name, @itemtype, @itemPower, @gold);
+go
 
+create procedure deleteItem @id int
+as
+	alter table inventory nocheck constraint itemRestraint;
+
+	Delete from item where @id = id;
+
+	alter table inventory check constraint itemRestraint;
+go
+
+exec addItem @itemid = 1;
+exec addItem @itemid = 1;
+exec addItem @itemid = 1;
+exec addItem @itemid = 1;
+exec addItem @itemid = 1;
+
+exec deleteItem @id = 1;
+
+exec createItem @name = 'Mega Health Potion', @itemtype = 1, @itemPower = 500, @gold = 400
