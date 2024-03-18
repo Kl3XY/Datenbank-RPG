@@ -58,7 +58,7 @@ CREATE INDEX playerID
 ON player(id); 
 
 create table enemy (
-	id int identity(1, 1) primary key,
+	id int identity(0, 1) primary key,
 	name varchar(64),
 	life int default 100,
 	maxLife int default 100,
@@ -101,6 +101,7 @@ insert into  item(name, itemType, itemPower, gold) values
 ('Revive Halo', 2, 120, 75);
 
 insert into  class(name, attackDelay, attack) values
+('Undefined', 0, 0),
 ('Warrior', 200, 125),
 ('Mage', 450, 300),
 ('Thief', 100, 50),
@@ -313,11 +314,10 @@ go
 
 create procedure deleteClass @id int
 as
-	alter table player nocheck constraint classRestraint;
-
+	update player
+	set classId = 0
+	where classId = @id
 	Delete from class where @id = id;
-
-	alter table player check constraint classRestraint;
 go
 
 create procedure createItem @name varchar(64), @itemtype int, @itemPower int, @gold int
@@ -328,19 +328,7 @@ go
 
 create procedure deleteItem @id int
 as
-	alter table inventory nocheck constraint itemRestraint;
-
+	Delete from inventory where @id = itemId;
 	Delete from item where @id = id;
-
-	alter table inventory check constraint itemRestraint;
 go
 
-exec addItem @itemid = 1;
-exec addItem @itemid = 1;
-exec addItem @itemid = 1;
-exec addItem @itemid = 1;
-exec addItem @itemid = 1;
-
-exec deleteItem @id = 1;
-
-exec createItem @name = 'Mega Health Potion', @itemtype = 1, @itemPower = 500, @gold = 400
