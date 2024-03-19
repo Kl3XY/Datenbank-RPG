@@ -13,25 +13,26 @@ namespace sql
         public int MaxLife { get; set; }
         public int Defense { get; set; }
         public int Id { get; set; }
-        public int playerClass { get; set; }
-        public string playerClassName { get; set; }
-        public int Attack { get; set; }
-        public int atkDelay { get; set; }
+        public int classId { get; set; }
+        public string className { get; set; }
+        public int attack { get; set; }
+        public int attackDelay { get; set; }
         public int currentAtkDelay { get; set; }
-        public int Gold { get; set; }
+        public int gold { get; set; }
 
+        public Player() { }
         public Player(string nm, int l, int d, int id, int pClass, int g, int ml, int attack, int attackDelay, string pClassName) { 
             Name = nm;
             Life = l;
             Defense = d;
             Id = id;
-            playerClass = pClass;
-            Gold = g;
+            classId = pClass;
+            gold = g;
             MaxLife = ml;
-            Attack = attack;
-            atkDelay = attackDelay;
+            this.attack = attack;
+            this.attackDelay = attackDelay;
             currentAtkDelay = attackDelay;
-            playerClassName = pClassName;
+            className = pClassName;
         }
     }
 

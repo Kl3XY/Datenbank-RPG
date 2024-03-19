@@ -39,7 +39,7 @@ namespace Datenbank_RPG
 
                 var player = Program.players.Find(d => d.Id == idOfChosenPlayer);
                 var enemy = enemies.Find(d => d.Id == idOfChosenEnemy);
-                playerAttackDelay = player.atkDelay;
+                playerAttackDelay = player.attackDelay;
                 enemyAttackDelay = enemy.atkDelay;
                 playerCurrentAttackDelay -= 100;
                 enemyCurrentAttackDelay -= 100;
@@ -52,8 +52,8 @@ namespace Datenbank_RPG
                     {
                         var cmd = prepared_statement.getStatement("setEnemyHealth");
                         cmd.Parameters[0].Value = enemy.Id;
-                        cmd.Parameters[1].Value = enemy.Life - player.Attack / 10;
-                        combatLog.Add($"{player.Name} Damaged {enemy.Name} for {player.Attack / 10}");
+                        cmd.Parameters[1].Value = enemy.Life - player.attack / 10;
+                        combatLog.Add($"{player.Name} Damaged {enemy.Name} for {player.attack / 10}");
                         cmd.ExecuteNonQuery();
                         playerCurrentAttackDelay = playerAttackDelay;
                     } else

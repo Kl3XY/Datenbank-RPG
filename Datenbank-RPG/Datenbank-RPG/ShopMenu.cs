@@ -76,10 +76,10 @@ namespace Datenbank_RPG
                 {
                     cmd.Parameters[0].Value = player.Id;
                     cmd.Parameters[1].Value = itemID;
-                    cmd.Parameters[2].Value = player.Gold - Math.Min(cost, player.Gold);
+                    cmd.Parameters[2].Value = player.gold - Math.Min(cost, player.gold);
                     cmd.ExecuteNonQuery();
 
-                    cost -= Math.Min(cost, player.Gold);
+                    cost -= Math.Min(cost, player.gold);
                 }
             }
         }

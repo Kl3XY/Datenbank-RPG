@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datenbank-RPG", "Datenbank-RPG\Datenbank-RPG.csproj", "{A32BA04A-6F1B-42F4-AFA7-1E6797A7C0D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sql", "sql\sql.csproj", "{67FC298F-1971-43DE-AB35-433F8CE1CA1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sql", "sql\sql.csproj", "{67FC298F-1971-43DE-AB35-433F8CE1CA1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web API", "Datenbank RPG\Web API.csproj", "{17B57C6A-D8D0-4946-B434-62CFC3DF9245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{67FC298F-1971-43DE-AB35-433F8CE1CA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67FC298F-1971-43DE-AB35-433F8CE1CA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67FC298F-1971-43DE-AB35-433F8CE1CA1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17B57C6A-D8D0-4946-B434-62CFC3DF9245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17B57C6A-D8D0-4946-B434-62CFC3DF9245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17B57C6A-D8D0-4946-B434-62CFC3DF9245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17B57C6A-D8D0-4946-B434-62CFC3DF9245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

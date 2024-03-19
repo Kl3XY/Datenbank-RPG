@@ -27,8 +27,8 @@ namespace Datenbank_RPG
             ShopMenu.generalGoldAmount = 0;
             foreach (Player player in Program.players)
             {
-                ShopMenu.generalGoldAmount += player.Gold;
-                table.AddRow(player.Name, player.playerClassName, $"{player.Life}/{player.MaxLife}", player.Attack, player.Defense, player.Gold);
+                ShopMenu.generalGoldAmount += player.gold;
+                table.AddRow(player.Name, player.className, $"{player.Life}/{player.MaxLife}", player.attack, player.Defense, player.gold);
             }
 
             table.Write();
@@ -45,8 +45,8 @@ namespace Datenbank_RPG
             ShopMenu.generalGoldAmount = 0;
             foreach (Player player in Program.players)
             {
-                ShopMenu.generalGoldAmount += player.Gold;
-                table.AddRow(player.Name, player.playerClassName, $"{player.Life}/{player.MaxLife}", player.Attack, player.Defense, player.Gold);
+                ShopMenu.generalGoldAmount += player.gold;
+                table.AddRow(player.Name, player.className, $"{player.Life}/{player.MaxLife}", player.attack, player.Defense, player.gold);
             }
 
             table.Write();
@@ -67,11 +67,11 @@ namespace Datenbank_RPG
                 var item = Program.players[i];
                 if (i == Inventory.menuSelect)
                 {
-                    table.AddRow(">" + item.Name + "<", ">" + item.playerClassName + "<", ">" + $"{item.Life}/{item.MaxLife}" + "<", ">" + item.Attack + "<", ">" + item.Defense + "<", item.Gold + "<");
+                    table.AddRow(">" + item.Name + "<", ">" + item.className + "<", ">" + $"{item.Life}/{item.MaxLife}" + "<", ">" + item.attack + "<", ">" + item.Defense + "<", item.gold + "<");
                 }
                 else
                 {
-                    table.AddRow(item.Name, item.playerClassName, $"{item.Life}/{item.MaxLife}", item.Attack, item.Defense, item.Gold);
+                    table.AddRow(item.Name, item.className, $"{item.Life}/{item.MaxLife}", item.attack, item.Defense, item.gold);
                 }
             }
 
@@ -92,11 +92,11 @@ namespace Datenbank_RPG
                 var item = Program.players[i];
                 if (i == Statistics.menuSelect)
                 {
-                    table.AddRow(">" + item.Name + "<", ">" + item.playerClassName + "<", ">" + $"{item.Life}/{item.MaxLife}" + "<", ">" + item.Attack + "<", ">" + item.Defense + "<", ">" + item.Gold + "<");
+                    table.AddRow(">" + item.Name + "<", ">" + item.className + "<", ">" + $"{item.Life}/{item.MaxLife}" + "<", ">" + item.attack + "<", ">" + item.Defense + "<", ">" + item.gold + "<");
                 }
                 else
                 {
-                    table.AddRow(item.Name, item.playerClassName, $"{item.Life}/{item.MaxLife}", item.Attack, item.Defense, item.Gold);
+                    table.AddRow(item.Name, item.className, $"{item.Life}/{item.MaxLife}", item.attack, item.Defense, item.gold);
                 }
             }
 

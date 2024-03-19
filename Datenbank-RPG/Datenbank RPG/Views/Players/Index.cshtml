@@ -1,0 +1,89 @@
+﻿@model IEnumerable<sql.Player>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Life)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxLife)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Defense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.classId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.className)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attackDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.currentAtkDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gold)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Life)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxLife)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Defense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.classId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.className)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attackDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.currentAtkDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gold)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
