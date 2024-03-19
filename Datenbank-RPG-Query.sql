@@ -20,7 +20,7 @@ use game;
 go
 
 create table class (
-	id int identity(1, 1) primary key,
+	id int identity(0, 1) primary key,
 	name varchar(64),
 	attackDelay int default 100,
 	attack int default 20,
@@ -57,14 +57,20 @@ ON player(name);
 CREATE INDEX playerID
 ON player(id); 
 
+create table enemyType (
+	id int identity(1, 1) primary key,
+	name varchar(64),
+	attackDelay int default 10,
+	attack int default 20
+);
+
 create table enemy (
 	id int identity(0, 1) primary key,
 	name varchar(64),
 	life int default 100,
 	maxLife int default 100,
 	defense int default 20,
-	attackDelay int default 10,
-	attack int default 20
+	enemyTypeId int foreign key references enemyType(id)
 );
 
 create table battle (
@@ -110,13 +116,11 @@ insert into  class(name, attackDelay, attack) values
 insert into player(name, life, maxlife, defense, classId, gold) values
 ('KENT KARSON', 50, 50, 20, 1, 20);
 
-insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
-('Goblin', 20, 20, 5, 500, 60),
-('Iron Golem', 40, 40, 15, 1500, 320),
-('Thief', 5, 5, 5, 100, 20),
-('Bandit', 25, 25, 5, 750, 180),
-('Robot', 15, 15, 5, 2500, 800),
-('Steel Plated Bomb', 120, 120, 15, 10000, 1000);
+insert into enemyType(name, attackDelay, attack) values
+('Small Foe', 500, 60);
+
+insert into enemy(name, life, maxLife, defense, enemyTypeId) values
+('Goblin', 20, 20, 5, 1);
 
 go 
 
@@ -180,11 +184,14 @@ create procedure displayEnemies @id int
 as
 	IF @id != -1 
 	BEGIN
-		select * from enemy where id = @id
+		select enemy.id, enemy.name, enemy.life, enemy.maxLife, enemy.defense, e.name as type, e.attack, e.attackDelay from enemy 
+		inner join enemyType as e on e.id = enemy.enemyTypeId
+		where enemy.id = @id
 	END
 	ELSE
 	BEGIN
-		select * from enemy 
+		select *, e.name as type from enemy 
+		inner join enemyType as e on e.id = enemyTypeId
 	END
 go
 
@@ -285,13 +292,13 @@ as
 	where @id = id;
 go
 
-create procedure addEnemy @name varchar(64), @life int, @defense int, @attackDelay int, @attack int
+create procedure addEnemy @name varchar(64), @life int, @defense int, @enemyType int
 as
-	insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
-	(@name, @life, @life, @defense, @attackDelay, @attack);
+	insert into enemy(name, life, maxLife, defense, enemyTypeId) values
+	(@name, @life, @life, @defense, @enemyType);
 go
 
-create procedure updateEnemy @id int, @name varchar(64), @life int, @maxlife int, @defense int, @attackDelay int, @attack int
+create procedure updateEnemy @id int, @name varchar(64), @life int, @maxlife int, @defense int, @enemyType int
 as
 	update enemy
 	set 
@@ -299,12 +306,11 @@ as
 	life = @life,
 	maxlife = @maxlife,
 	defense = @defense,
-	attackDelay = @attackDelay,
-	attack = @attack
+	enemyTypeId = @enemyType
 	where id = @id;
 
-	insert into enemy(name, life, maxLife, defense, attackDelay, attack) values
-	(@name, @life, @life, @defense, @attackDelay, @attack);
+	insert into enemy(name, life, maxLife, defense, enemyTypeId) values
+	(@name, @life, @life, @defense, @enemyType);
 go
 
 create procedure removeEnemy @id int
@@ -332,3 +338,6 @@ as
 	Delete from item where @id = id;
 go
 
+exec displayEnemies @id = 0
+
+exec displayInventory
