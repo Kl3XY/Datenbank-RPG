@@ -9,8 +9,8 @@ using System.Transactions;
 
 internal class Program
 {
-    public static List<Player> players = new();
-    public static List<Enemy> enemies = new();
+    public static List<sql.Player> players = new();
+    public static List<sql.Enemy> enemies = new();
     public static SqlConnection connection = null;
     public static Random rng = new();
 

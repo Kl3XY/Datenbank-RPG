@@ -13,7 +13,7 @@ namespace Datenbank_RPG
         public static int menuSelect = 0;
         public static int turns = 0;
         public static bool loopSection = true;
-        public static List<Item> items = new();
+        public static List<sql.Item> items = new();
         public static int generalGoldAmount = 0;
         public static int selectedItemId = -1;
         public static int selectedItemList = -1;

@@ -15,7 +15,7 @@ namespace Datenbank_RPG
         public static int menuSelect = 0;
         public static int turns = 0;
         public static bool loopSection = true;
-        public static List<Item> items = new();
+        public static List<sql.Item> items = new();
         public static int generalGoldAmount = 0;
 
         public static void Menu()
@@ -72,7 +72,7 @@ namespace Datenbank_RPG
             var cmd = prepared_statement.getStatement("buyItem");
             while (cost > 0)
             {
-                foreach (Player player in Program.players)
+                foreach (sql.Player player in Program.players)
                 {
                     cmd.Parameters[0].Value = player.Id;
                     cmd.Parameters[1].Value = itemID;

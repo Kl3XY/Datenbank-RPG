@@ -13,7 +13,7 @@ namespace Datenbank_RPG
         public static int menuSelect = 0;
         public static int turns = 0;
         public static bool loopSection = true;
-        public static List<Enemy> enemies = new();
+        public static List<sql.Enemy> enemies = new();
         public static List<string> combatLog = new();
         public static int generalGoldAmount = 0;
         public static int idOfChosenPlayer = 0;

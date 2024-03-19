@@ -179,7 +179,7 @@ namespace Datenbank_RPG
 
                 var partyMember = "";
                 
-                foreach (Player plr in Program.players)
+                foreach (sql.Player plr in Program.players)
                 {
                     partyMember += plr.Name[0] + ".";
                 }

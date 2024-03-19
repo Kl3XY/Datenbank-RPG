@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datenbank_RPG
+namespace sql
 {
-    internal class Player
+    public class Player
     {
         public string Name { get; set; }
         public int Life { get; set; }
@@ -44,8 +44,9 @@ namespace Datenbank_RPG
         public int Id { get; set; }
         public int atk { get; set; }
         public int atkDelay { get; set; }
+        public string type { get; set; }
 
-        public Enemy(int id, string nm, int l, int d, int atk, int atkDelay, int maxLife)
+        public Enemy(int id, string nm, int l, int d, int atk, int atkDelay, int maxLife, string type)
         {
             Name = nm;
             Life = l;
@@ -54,6 +55,7 @@ namespace Datenbank_RPG
             Id = id;
             this.atk = atk;
             this.atkDelay = atkDelay;
+            this.type = type;
         }
     }
 }

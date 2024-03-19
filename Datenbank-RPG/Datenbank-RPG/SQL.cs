@@ -9,30 +9,21 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Datenbank;
 using System.Numerics;
+using sql;
 
 namespace Datenbank_RPG
 {
     public static class SQL
     {
-        public static DataTable drawPlayerList(int id = -1)
+        public static void drawPlayerList(int id = -1)
         {
             Program.players.Clear();
             ConsoleTable table = new ConsoleTable("Name", "Class", "Life", "Attack", "Defense", "Gold");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
             SqlCommand cmd = prepared_statement.getStatement("displayPlayers");
             cmd.Parameters[0].Value = id;
+            Program.players = cmds.GetPlayers(cmd);
 
-            using (cmd)
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var basePlayer = new Player(row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["id"]), Convert.ToInt32(row["classId"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["maxlife"]), Convert.ToInt32(row["attack"]), Convert.ToInt32(row["attackDelay"]), row["className"].ToString());
-                    Program.players.Add(basePlayer);
-                }
-            }
             ShopMenu.generalGoldAmount = 0;
             foreach (Player player in Program.players)
             {
@@ -41,27 +32,16 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-            return data;
         }
 
-        public static DataTable drawPlayerListSortedByGold()
+        public static void drawPlayerListSortedByGold()
         {
             Program.players.Clear();
             ConsoleTable table = new ConsoleTable("Name", "Class", "Life", "Attack", "Defense", "Gold");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
             SqlCommand cmd = prepared_statement.getStatement("sortPlayerByGold");
-            using (cmd)
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var basePlayer = new Player(row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["id"]), Convert.ToInt32(row["classId"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["maxlife"]), Convert.ToInt32(row["attack"]), Convert.ToInt32(row["attackDelay"]), row["className"].ToString());
-                    Program.players.Add(basePlayer);
-                }
-            }
+            Program.players = cmds.GetPlayers(cmd);
+
             ShopMenu.generalGoldAmount = 0;
             foreach (Player player in Program.players)
             {
@@ -70,29 +50,17 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-            return data;
         }
 
-        public static DataTable drawPlayerListSelectInventory(int id = -1)
+        public static void drawPlayerListSelectInventory(int id = -1)
         {
             Program.players.Clear();
             ConsoleTable table = new ConsoleTable("Name", "Class", "Life", "Attack", "Defense", "Gold");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
             SqlCommand cmd = prepared_statement.getStatement("displayPlayers");
             cmd.Parameters[0].Value = id;
 
-            using (cmd)
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var basePlayer = new Player(row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["id"]), Convert.ToInt32(row["classId"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["maxlife"]), Convert.ToInt32(row["attack"]), Convert.ToInt32(row["attackDelay"]), row["className"].ToString());
-                    Program.players.Add(basePlayer);
-                }
-            }
+            Program.players = cmds.GetPlayers(cmd);
 
             for (var i = 0; i < Program.players.Count; i++)
             {
@@ -108,30 +76,16 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-            
-            return data;
         }
 
-        public static DataTable drawPlayerListSelectStatistics(string search = "")
+        public static void drawPlayerListSelectStatistics(string search = "")
         {
             Program.players.Clear();
             ConsoleTable table = new ConsoleTable("Name", "Class", "Life", "Attack", "Defense", "Gold");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
             SqlCommand cmd = prepared_statement.getStatement("searchPlayer");
             cmd.Parameters[0].Value = search;
-
-            using (cmd)
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var basePlayer = new Player(row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["id"]), Convert.ToInt32(row["classId"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["maxlife"]), Convert.ToInt32(row["attack"]), Convert.ToInt32(row["attackDelay"]), row["className"].ToString());
-                    Program.players.Add(basePlayer);
-                }
-            }
+            Program.players = cmds.GetPlayers(cmd);
 
             for (var i = 0; i < Program.players.Count; i++)
             {
@@ -147,25 +101,14 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-
-            return data;
         }
-        public static DataTable initShop()
+        public static void initShop()
         {
             ConsoleTable table = new ConsoleTable("Name", "ItemType", "Power", "Cost");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
-            using (var cmd = prepared_statement.getStatement("listItems"))
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var baseItem = new Item(Convert.ToInt32(row["id"]), row["name"].ToString(), row["itemTypeName"].ToString(), Convert.ToInt32(row["itemPower"]), Convert.ToInt32(row["gold"]));
-                    ShopMenu.items.Add(baseItem);
-                }
-            }
+            var cmd = prepared_statement.getStatement("listItems");
+            ShopMenu.items = sql.cmds.GetItems(cmd);
+            
             
             for(var i = 0; i < ShopMenu.items.Count; i++)
             {
@@ -180,29 +123,17 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-            return data;
         }
 
-        public static DataTable drawEnemyList()
+        public static void drawEnemyList()
         {
             Combat_Screen.enemies.Clear();
             ConsoleTable table = new ConsoleTable("Name", "Life");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
             SqlCommand cmd = prepared_statement.getStatement("displayEnemy");
             cmd.Parameters[0].Value = Combat_Screen.idOfChosenEnemy;
 
-            using (cmd)
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var baseEnemy = new Enemy(Convert.ToInt32(row["id"]), row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["attack"]), Convert.ToInt32(row["attackDelay"]), Convert.ToInt32(row["maxLife"]));
-                    Combat_Screen.enemies.Add(baseEnemy);
-                }
-            }
+            Combat_Screen.enemies = cmds.GetEnemies(cmd);
 
             for (var i = 0; i < Combat_Screen.enemies.Count; i++)
             {
@@ -211,50 +142,26 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-            return data;
         }
 
-        public static DataTable chooseEnemy()
+        public static void chooseEnemy()
         {
             Combat_Screen.enemies.Clear();
-            DataTable data = new DataTable();
             SqlCommand cmd = prepared_statement.getStatement("displayEnemy");
             cmd.Parameters[0].Value = -1;
-            var roll = 20;
 
-            using (cmd)
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var baseEnemy = new Enemy(Convert.ToInt32(row["id"]), row["name"].ToString(), Convert.ToInt32(row["life"]), Convert.ToInt32(row["defense"]), Convert.ToInt32(row["attack"]), Convert.ToInt32(row["attackDelay"]), Convert.ToInt32(row["maxLife"]));
-                    Combat_Screen.enemies.Add(baseEnemy);
-                }
-            }
-            var rnd = Program.rng.Next(1, Combat_Screen.enemies.Count);
+            Combat_Screen.enemies = cmds.GetEnemies(cmd);
+            var rnd = Program.rng.Next(0, Combat_Screen.enemies.Count-1);
             Combat_Screen.idOfChosenEnemy = Combat_Screen.enemies[rnd].Id;
-
-            return data;
         }
 
-        public static DataTable displayInventory()
+        public static void displayInventory()
         {
             ConsoleTable table = new ConsoleTable("Name", "ItemType", "Power", "Amount");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
-            using (var cmd = prepared_statement.getStatement("displayInventory"))
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var baseItem = new Item(Convert.ToInt32(row["id"]), row["name"].ToString(), row["itemname"].ToString(), Convert.ToInt32(row["itemPower"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["amount"]));
-                    Inventory.items.Add(baseItem);
-                }
-            }
-
+            var cmd = prepared_statement.getStatement("displayInventory");
+            Inventory.items = cmds.GetItems(cmd);
+ 
             for (var i = 0; i < Inventory.items.Count; i++)
             {
                 var item = Inventory.items[i];
@@ -270,24 +177,14 @@ namespace Datenbank_RPG
 
             table.Write();
 
-            return data;
         }
 
-        public static DataTable displayInventorySortedByAmount()
+        public static void displayInventorySortedByAmount()
         {
             ConsoleTable table = new ConsoleTable("Name", "ItemType", "Amount");
             table.Options.EnableCount = false;
-            DataTable data = new DataTable();
-            using (var cmd = prepared_statement.getStatement("sortInventoryByAmount"))
-            {
-                var adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(data);
-                foreach (DataRow row in data.Rows)
-                {
-                    var baseItem = new Item(Convert.ToInt32(row["id"]), row["name"].ToString(), "", 0, 0, Convert.ToInt32(row["amount"]));
-                    Inventory.items.Add(baseItem);
-                }
-            }
+            var cmd = prepared_statement.getStatement("sortInventoryByAmount");
+            Inventory.items = cmds.GetItems(cmd);
 
             for (var i = 0; i < Inventory.items.Count; i++)
             {
@@ -296,8 +193,6 @@ namespace Datenbank_RPG
             }
 
             table.Write();
-
-            return data;
         }
 
         public static DataSet queryDraw(SqlCommand cmd)
