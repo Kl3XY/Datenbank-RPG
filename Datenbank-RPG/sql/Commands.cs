@@ -59,7 +59,35 @@ namespace sql
 
             foreach (DataRow row in data.Rows)
             {
-                var baseItem = new Item(Convert.ToInt32(row["id"]), row["name"].ToString(), row["itemname"].ToString(), Convert.ToInt32(row["itemPower"]), Convert.ToInt32(row["gold"]));
+                var baseItem = new Item(Convert.ToInt32(row["id"]), row["name"].ToString(), row["itemname"].ToString(), Convert.ToInt32(row["itemPower"]), Convert.ToInt32(row["gold"]), Convert.ToInt32(row["amount"]));
+                list.Add(baseItem);
+            }
+
+            return list;
+        }
+
+        public static List<(string, string)> GetPlayerGraveyard(SqlCommand sqlCommand)
+        {
+            var data = GetDataTable(sqlCommand);
+            var list = new List<(string, string)>();
+
+            foreach (DataRow row in data.Rows)
+            {
+                var baseItem = (row["Hero"].ToString(), row["Has been slain by"].ToString());
+                list.Add(baseItem);
+            }
+
+            return list;
+        }
+
+        public static List<(string, string, int)> GetEnemyGraveyard(SqlCommand sqlCommand)
+        {
+            var data = GetDataTable(sqlCommand);
+            var list = new List<(string, string, int)>();
+
+            foreach (DataRow row in data.Rows)
+            {
+                var baseItem = (row["Enemy"].ToString(), row["Has been slain by"].ToString(), Convert.ToInt32(row["Amount of times Slain"]));
                 list.Add(baseItem);
             }
 

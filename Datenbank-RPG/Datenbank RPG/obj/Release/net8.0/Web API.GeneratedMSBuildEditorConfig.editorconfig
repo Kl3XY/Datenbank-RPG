@@ -30,8 +30,12 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Welcome.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcV2VsY29tZS5jc2h0bWw=
+[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Players.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcUGxheWVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/ShowPlayer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcU2hvd1BsYXllci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Home/Index.cshtml]
@@ -40,26 +44,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Players/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyc1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Players/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyc1xEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Players/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyc1xEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Players/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyc1xFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Players/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Martinga/Desktop/Neuer Ordner/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/Error.cshtml]
