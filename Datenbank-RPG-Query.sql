@@ -132,8 +132,15 @@ go
 
 create procedure list_all_items
 as
-	select item.id, item.name, itemType, iT.name as itemTypeName, itemPower, gold from item
+	select item.id, item.name, itemType, iT.name as itemname, itemPower, gold, 1 as amount from item
 	INNER JOIN itemType as iT on itemType = iT.id
+go
+
+create procedure list_item @id int
+as
+	select item.id, item.name, itemType, iT.name as itemname, itemPower, gold, 1 as amount from item
+	INNER JOIN itemType as iT on itemType = iT.id
+	where @id = item.id
 go
 
 create procedure buyItem @playerID int, @itemId int, @gold int
@@ -190,8 +197,8 @@ as
 	END
 	ELSE
 	BEGIN
-		select *, e.name as type from enemy 
-		inner join enemyType as e on e.id = enemyTypeId
+		select enemy.id, enemy.name, enemy.life, enemy.maxLife, enemy.defense, e.name as type, e.attack, e.attackDelay from enemy 
+		inner join enemyType as e on e.id = enemy.enemyTypeId
 	END
 go
 
@@ -230,6 +237,20 @@ as
 	delete from inventory where amount = 0;
 go
 
+create procedure removeItemFromInventory @itemId int
+as
+	delete from inventory where @itemId = itemId
+go
+
+create procedure updateAmountItem @itemId int, @amount int
+as
+	update inventory
+	set amount = @amount
+	where itemId = @itemId;
+
+	delete from inventory where amount = 0;
+go
+
 create procedure searchPlayer @search varchar(64)
 as
 	select player.id, player.name, life, maxlife, defense, gold, classId, cl.attack, cl.attackDelay, cl.name as className from player
@@ -254,10 +275,12 @@ go
 
 create procedure displayPlayerGraveyard @id int
 as
-	select plr.name as 'Hero', enm.name as 'Has been slain by' from player_graveyard
+	select plr.name as 'Hero', enm.name as 'Has been slain by', COUNT(*) as amount from player_graveyard
 	inner join player as plr on id = playerId
 	inner join enemy as enm on enm.id = enemyId
-	where playerId = @id;
+	where playerId = @id
+	GROUP BY plr.name, enm.name
+	
 go
 
 create procedure displayEnemyGraveyard @id int
@@ -268,6 +291,26 @@ as
 	where playerId = @id
 	group by enm.name, plr.name;
 go
+
+create procedure displayPlayerGraveyard_enemyID @id int
+as
+	select plr.name as 'Hero', enm.name as 'Has been slain by', COUNT(*) as amount from player_graveyard
+	inner join player as plr on id = playerId
+	inner join enemy as enm on enm.id = enemyId
+	where enemyId = @id
+	GROUP BY plr.name, enm.name;
+	
+go
+
+create procedure displayEnemyGraveyard_enemyID @id int
+as
+	select enm.name as 'Enemy', plr.name as 'Has been slain by', COUNT(*) as 'Amount of times Slain' from enemy_graveyard
+	inner join player as plr on id = playerId
+	inner join enemy as enm on enm.id = enemyId
+	where enemyId = @id
+	group by enm.name, plr.name;
+go
+
 
 create procedure mostKilledEnemy
 as
@@ -308,14 +351,39 @@ as
 	defense = @defense,
 	enemyTypeId = @enemyType
 	where id = @id;
+go
 
-	insert into enemy(name, life, maxLife, defense, enemyTypeId) values
-	(@name, @life, @life, @defense, @enemyType);
+create procedure updatePlayer @id int, @name varchar(64), @life int, @maxlife int, @defense int, @classId int
+as
+	update player
+	set 
+	name = @name,
+	life = @life,
+	maxlife = @maxlife,
+	defense = @defense,
+	classId = @classId
+	where id = @id;
+go
+
+create procedure updateItem @id int, @name varchar(64), @itemPower int, @itemType int, @Gold int
+as
+	update Item
+	set 
+	name = @name,
+	itemPower = @itemPower,
+	itemType = @itemType,
+	gold = @Gold
+	where id = @id;
 go
 
 create procedure removeEnemy @id int
 as
 	Delete from enemy where @id = id;
+go
+
+create procedure removePlayer @id int
+as
+	Delete from player where @id = id;
 go
 
 create procedure deleteClass @id int
@@ -341,3 +409,42 @@ go
 exec displayEnemies @id = 0
 
 exec displayInventory
+
+exec playerDead @playerId = 1, @enemyId = 0;
+exec playerDead @playerId = 1, @enemyId = 0;
+exec playerDead @playerId = 1, @enemyId = 0;
+exec playerDead @playerId = 1, @enemyId = 0;
+exec playerDead @playerId = 1, @enemyId = 0;
+exec playerDead @playerId = 1, @enemyId = 0;
+exec playerDead @playerId = 1, @enemyId = 0;
+
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+exec enemyDead @playerId = 1, @enemyId = 0;
+
+
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+exec addItem @itemId = 1;
+
+exec displayEnemyGraveyard_enemyID @id = 0;
+
+
+exec displayEnemies @id = -1; 

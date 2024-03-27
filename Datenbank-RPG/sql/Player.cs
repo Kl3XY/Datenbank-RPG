@@ -46,7 +46,7 @@ namespace sql
         public int atk { get; set; }
         public int atkDelay { get; set; }
         public string type { get; set; }
-
+        public Enemy() { }
         public Enemy(int id, string nm, int l, int d, int atk, int atkDelay, int maxLife, string type)
         {
             Name = nm;

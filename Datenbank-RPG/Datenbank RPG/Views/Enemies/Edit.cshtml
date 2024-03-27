@@ -1,0 +1,33 @@
+﻿@model sql.Enemy;
+@using Datenbank_RPG.Controllers
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Create an enemy";
+
+}
+
+<h2>ITEM EDIT (ID: @Model.Id)</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Name) <br />
+        @Html.TextBoxFor(m => m.Name, new { @Value = Model.Name })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.maxLife) <br />
+        @Html.TextBoxFor(m => m.maxLife, new { @Value = Model.maxLife, type = "number" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.type)
+    </div>
+    <select asp-for="type" asp-items="Html.GetEnumSelectList<enemyType>()"></select>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Defense) <br />
+        @Html.TextBoxFor(m => m.Defense, new { @Value = Model.Defense, type = "number" })
+    </div>
+    <Input id="Submit1" type="submit" value="submit"></Input>
+}

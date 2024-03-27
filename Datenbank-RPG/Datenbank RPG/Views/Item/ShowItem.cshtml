@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Datenbank Rollenspiel!";
+    sql.Item selitem = ViewData["Item"] as sql.Item;
+}
+<style>
+    .item {
+        padding-left: 16px;
+        margin-bottom: 4px;
+    }
+
+</style>
+
+<h2>PLAYER: @selitem.Name (Id: @selitem.Id)</h2>
+
+NAME: @selitem.Name
+<br>
+TYPE: @selitem.ItemType
+<br>
+COST: @selitem.Gold
+<br>
+POWER: @selitem.ItemPower
+<br>
+<br></br>
+<label class="dropDownContainer">
+    <li class="dropDownSquare">@Html.ActionLink($"SET AMOUNT", "Edit", new { @id = selitem.Id })</li> <br></br>
+    <li class="dropDownSquare">@Html.ActionLink($"REMOVE", "Delete", new { @id = selitem.Id })</li> <br></br>
+</label>

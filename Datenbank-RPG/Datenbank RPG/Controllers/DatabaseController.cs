@@ -2,6 +2,8 @@
 using System.Text.Encodings.Web;
 
 using System.Data.SqlClient;
+using sql;
+using Datenbank_RPG.Models;
 
 namespace Datenbank_RPG.Controllers
 {
@@ -9,72 +11,160 @@ namespace Datenbank_RPG.Controllers
     {
         //
         // GET: /Database/
-        public IActionResult Index(int age)
+        public IActionResult Index()
         {
-            ViewData["age"] = age;
             return View();
         }
 
-        //
-        // GET: /Database/Welcome
-        public IActionResult players()
+        public IActionResult items()
         {
             SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
 
-            sqlBuilder.ConnectionString = $"Server=(localDB)\\MSSQLLocalDB;Database=game;Integrated Security=True;TrustServerCertificate=true";
+            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
 
             SqlConnection connection;
 
             using (connection = new SqlConnection(sqlBuilder.ConnectionString))
             {
-                var displayPlayersCommand = new SqlCommand("exec displayPlayers @id = @i", connection);
-                displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
-                displayPlayersCommand.Parameters[0].Value = -1;
+                var getInventoryCommand = new SqlCommand("exec displayInventory", connection);
 
-                var list = sql.cmds.GetPlayers(displayPlayersCommand);
+                var listItem = sql.cmds.GetItems(getInventoryCommand);
 
-                ViewData["listOfPlayers"] = list;
-                ViewData["listSize"] = list.Count;
-                
+
+                ViewData["Items"] = listItem;
+
                 return View();
             }
         }
 
-        public IActionResult showPlayer(int id)
+        public IActionResult showitem(int id)
         {
             SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
 
-            sqlBuilder.ConnectionString = $"Server=(localDB)\\MSSQLLocalDB;Database=game;Integrated Security=True;TrustServerCertificate=true";
+            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
 
             SqlConnection connection;
 
             using (connection = new SqlConnection(sqlBuilder.ConnectionString))
             {
-                var displayPlayersCommand = new SqlCommand("exec displayPlayers @id = @i", connection);
+                var getInventoryCommand = new SqlCommand("exec list_item @id = @i", connection);
+                getInventoryCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+                getInventoryCommand.Parameters[0].Value = id;
+
+                var listItem = sql.cmds.GetItems(getInventoryCommand);
+
+
+                ViewData["Item"] = listItem[0];
+
+                return View();
+            }
+        }
+
+        public IActionResult allItems()
+        {
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+
+            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
+
+            SqlConnection connection;
+
+            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            {
+                var getInventoryCommand = new SqlCommand("exec list_all_items", connection);
+
+                var listItem = sql.cmds.GetItems(getInventoryCommand);
+
+
+                ViewData["Items"] = listItem;
+
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+
+            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
+
+            SqlConnection connection;
+
+            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            {
+                var displayPlayersCommand = new SqlCommand("exec list_item @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
                 displayPlayersCommand.Parameters[0].Value = id;
 
-                var listAllItemsCommand = new SqlCommand("exec displayInventory", connection);
+                var listEnemy = sql.cmds.GetItems(displayPlayersCommand);
 
-                var playerGraveyardCommand = new SqlCommand("exec displayPlayerGraveyard @id = @i", connection);
-                playerGraveyardCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
-                playerGraveyardCommand.Parameters[0].Value = id;
+                Console.WriteLine();
 
-                var enemyGraveyardCommand = new SqlCommand("exec displayEnemyGraveyard @id = @i", connection);
-                enemyGraveyardCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
-                enemyGraveyardCommand.Parameters[0].Value = id;
+                return View(listEnemy[0]);
+            }
+        }
 
-                var listPlayers = sql.cmds.GetPlayers(displayPlayersCommand);
-                var listItems = sql.cmds.GetItems(listAllItemsCommand);
-                var listPlayerGraveyard = sql.cmds.GetPlayerGraveyard(playerGraveyardCommand);
-                var listEnemyGraveyard = sql.cmds.GetEnemyGraveyard(enemyGraveyardCommand);
+        [HttpPost]
+        public IActionResult Edit(sql.Item item)
+        {
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
 
-                ViewData["Player"] = listPlayers[0];
-                ViewData["listItems"] = listItems;
-                ViewData["listPlayerGraveyard"] = listPlayerGraveyard;
-                ViewData["listEnemyGraveyard"] = listEnemyGraveyard;
+            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
 
-                return View();
+            SqlConnection connection;
+
+            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            {
+                connection.Open();
+
+                var displayPlayersCommand = new SqlCommand("exec updateItem @id = @i, @name = @n, @itemPower = @l, @itemType = @ml, @Gold = @d", connection);
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+                displayPlayersCommand.Parameters[0].Value = item.Id;
+
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@l", System.Data.SqlDbType.Int));
+                displayPlayersCommand.Parameters[1].Value = item.ItemPower;
+
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@ml", System.Data.SqlDbType.Int));
+                displayPlayersCommand.Parameters[2].Value = item.ItemType;
+
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@d", System.Data.SqlDbType.Int));
+                displayPlayersCommand.Parameters[3].Value = item.Gold;
+
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@n", System.Data.SqlDbType.VarChar, 64));
+                displayPlayersCommand.Parameters[4].Value = item.Name;
+
+
+                displayPlayersCommand.ExecuteNonQuery();
+
+                connection.Close();
+
+                return Redirect("/Database/allitems");
+            }
+        }
+
+        public IActionResult Delete(int id)
+        {
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+
+            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
+
+            SqlConnection connection;
+
+            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            {
+                var displayPlayersCommand = new SqlCommand("exec deleteItem @id = @i", connection);
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
+                displayPlayersCommand.Parameters[0].Value = id;
+
+                connection.Open();
+
+                displayPlayersCommand.ExecuteNonQuery();
+
+                connection.Close();
+
+                Console.WriteLine();
+
+                return Redirect("/Database/allitems");
             }
         }
     }

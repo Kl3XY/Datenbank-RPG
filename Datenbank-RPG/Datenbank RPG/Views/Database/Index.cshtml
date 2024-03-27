@@ -4,79 +4,8 @@
 @{
     ViewData["Title"] = "Datenbank Rollenspiel!";
 }
-<style>
-    body {
-        background-color: black;
-        color: white;
-    }
 
-    .genContainer {
-        align-content: center;
-        text-align: center;
-    }
-
-    .selectionContainer {
-        align-content: center;
-        text-align: center;
-        display: flex;
-        margin: auto;
-        width: 50%;
-    }
-
-    .title {
-        text-align: center;
-        font-family: 'Retro Computer';
-    }
-
-    .btn {
-        color: black;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .btnContent {
-        color:white;
-    }
-
-    .btn.unclick {
-        color: lightgray;
-    }
-
-    .vp {
-        color: lightgray;
-    }
-
-    a {
-        font-family: 'Retro Computer';
-        color: inherit;
-        text-decoration: none;
-    }
-
-    li {
-        float:left;
-        color: white;
-    }
-
-    ul {
-        list-style-type: none;
-        display: flex;
-        align-items: center;
-    }
-</style>
 
 <body>
     
-    <div class="selectionContainer">
-        <h2 class="title">Welcome to Idle Traveler!</h2>
-        <br/>
-        <ul>
-            <li class="btn"><div class="btnContent">@Html.ActionLink($"Characters", "Players")</div></li>
-            <li class="btn"><div class="btnContent">|</div></li>
-            <li class="btn"><div class="btnContent">@Html.ActionLink($"Enemies", "Players")</div></li>
-            <li class="btn"><div class="btnContent">|</div></li>
-            <li class="btn"><div class="btnContent">@Html.ActionLink($"Items", "Players")</div></li>
-            <li class="btn"><div class="btnContent">|</div></li>
-            <li class="btn"><div class="btnContent">@Html.ActionLink($"Shop", "Players")</div></li>
-        </ul>
-    </div>
 </body>

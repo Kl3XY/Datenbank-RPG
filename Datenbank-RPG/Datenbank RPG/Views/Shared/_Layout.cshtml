@@ -10,33 +10,79 @@
     <link rel="stylesheet" href="~/Datenbank_RPG.styles.css" asp-append-version="true" />
     *@
 </head>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: "Retro Computer";
+    }
+
+    .genContainer {
+        align-content: center;
+        text-align: center;
+    }
+
+    .selectionContainer {
+        align-content: center;
+        text-align: center;
+        display: flex;
+        margin: auto;
+        width: 50%;
+    }
+
+    .title {
+        text-align: center;
+        font-family: 'Retro Computer';
+    }
+
+    .btn {
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .btnContent {
+        color: white;
+    }
+
+    .btn.unclick {
+        color: lightgray;
+    }
+
+    .vp {
+        color: lightgray;
+    }
+
+    a {
+        font-family: 'Retro Computer';
+        color: inherit;
+        text-decoration: none;
+    }
+
+    li {
+        float: left;
+        color: white;
+    }
+
+    ul {
+        list-style-type: none;
+        align-items: center;
+    }
+</style>
 <body>
-    @*
-    <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container-fluid">
-    <a class="navbar-brand" asp-area="" asp-controller="Datenbase" asp-action="Index">Datenbank_RPG</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Database" asp-action="Index">Database</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </li>
-    </ul>
+    <div class="selectionContainer">
+        <h2 class="title">Welcome to Idle Traveler!</h2>
+        <br />
+        <ul>
+            <li class="btn"><div class="btnContent">@Html.ActionLink($"Characters", "Index", "Player")</div></li>
+            <li class="btn"><div class="btnContent">|</div></li>
+            <li class="btn"><div class="btnContent">@Html.ActionLink($"Enemies", "Index", "Enemies")</div></li>
+            <li class="btn"><div class="btnContent">|</div></li>
+            <li class="btn"><div class="btnContent">@Html.ActionLink($"Inventory", "Index", "Item")</div></li>
+            <li class="btn"><div class="btnContent">|</div></li>
+            <li class="btn"><div class="btnContent">@Html.ActionLink($"Items / Shop", "allitems", "Database")</div></li>
+        </ul>
     </div>
-    </div>
-    </nav>
-    </header>
-    *@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

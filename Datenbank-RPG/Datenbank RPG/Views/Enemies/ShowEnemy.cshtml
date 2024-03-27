@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Datenbank Rollenspiel!";
+    sql.Enemy enemy = ViewData["Enemy"] as sql.Enemy;
+}
+<style>
+    .item {
+        padding-left: 16px;
+        margin-bottom: 4px;
+    }
+
+</style>
+
+<h2>PLAYER: @enemy.Name (Id: @enemy.Id)</h2>
+
+NAME: @enemy.Name
+<br>
+TYPE: @enemy.type
+<br>
+LIFE: @enemy.maxLife
+<br>
+ATTACK: @enemy.atk
+<br>
+ATTACK DELAY: @enemy.atkDelay
+<br>
+DEFENSE: @enemy.Defense
+<br>
+<br>
+<br>
+
+<label class="dropDownContainer">
+    <li class="dropDownSquare">@Html.ActionLink($"EDIT", "Edit", new { @id = enemy.Id })</li> <br></br>
+    <li class="dropDownSquare">@Html.ActionLink($"REMOVE", "Delete", new { @id = enemy.Id })</li> <br></br>
+</label>
+
+ARCH NEMESIS: <br>
+@foreach (var plr in ViewData["listPlayerGraveyard"] as List<(string, string, string)>)
+{
+    <p class="item">@plr.Item2 Has slain @plr.Item1 @plr.Item3 times</p>
+    <hr></hr>
+}
+
+ENEMIES KILLED: <br>
+@foreach (var enm in ViewData["listEnemyGraveyard"] as List<(string, string, int)>)
+{
+    <p class="item">@enm.Item1 Has been slain by @enm.Item2 @enm.Item3 amount of times!</p>
+    <hr></hr>
+}

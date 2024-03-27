@@ -66,14 +66,14 @@ namespace sql
             return list;
         }
 
-        public static List<(string, string)> GetPlayerGraveyard(SqlCommand sqlCommand)
+        public static List<(string, string, string)> GetPlayerGraveyard(SqlCommand sqlCommand)
         {
             var data = GetDataTable(sqlCommand);
-            var list = new List<(string, string)>();
+            var list = new List<(string, string ,string)>();
 
             foreach (DataRow row in data.Rows)
             {
-                var baseItem = (row["Hero"].ToString(), row["Has been slain by"].ToString());
+                var baseItem = (row["Hero"].ToString(), row["Has been slain by"].ToString(), row["amount"].ToString());
                 list.Add(baseItem);
             }
 

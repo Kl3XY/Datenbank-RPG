@@ -1,0 +1,22 @@
+﻿@model sql.Item;
+@using Datenbank_RPG.Controllers
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Create a item";
+
+}
+
+<h2>ITEM EDIT</h2>
+
+
+
+@using(Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.amount) <br />
+        @Html.TextBoxFor(m => m.amount, new { @Value = Model.amount, type = "number" })
+    </div>
+    <Input id="Submit1" type="submit" value="submit"></Input>
+}

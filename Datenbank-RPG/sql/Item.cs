@@ -14,6 +14,7 @@ namespace sql
         public int ItemPower { get; set; }
         public int Gold { get; set; }
         public int amount { get; set; }
+        public Item() { }
         public Item(int Id, string Name, string ItemType, int ItemPower, int Gold, int amount = 1)
         {
             this.Id = Id;
