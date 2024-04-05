@@ -10,38 +10,35 @@ namespace Datenbank_RPG.Controllers
     }
     public class EnemiesController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
-                var displayPlayersCommand = new SqlCommand("exec displayEnemies @id = @i", connection);
-                displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
-                displayPlayersCommand.Parameters[0].Value = -1;
+                var displayEnemiesCommand = new SqlCommand("exec searchEnemy @search = @d", connection);
+                displayEnemiesCommand.Parameters.Add(new SqlParameter("@d", System.Data.SqlDbType.VarChar, 64));
+                displayEnemiesCommand.Parameters[0].Value = sql.cmds.search;
 
-                var listPlayers = sql.cmds.GetEnemies(displayPlayersCommand);
+                var list = sql.cmds.GetEnemies(displayEnemiesCommand);
 
-
-                ViewData["Enemies"] = listPlayers;
-
+                ViewData["Enemies"] = list;
+                ViewData["listSize"] = list.Count;
+                sql.cmds.search = "";
                 return View();
             }
         }
 
+        [HttpPost]
+        public IActionResult Index(sql.search search)
+        {
+            if (search.searchTerm == null) { search.searchTerm = ""; }
+            sql.cmds.search = search.searchTerm;
+            return Redirect($"Index");
+        }
+
         public IActionResult showEnemy(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec displayEnemies @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -79,11 +76,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Create(sql.Enemy enemy)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            using (var connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -104,20 +97,14 @@ namespace Datenbank_RPG.Controllers
 
                 connection.Close();
 
-                return Redirect("/Enemies");
+                return Redirect("/Enemies/Index");
             }
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec displayEnemies @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -134,13 +121,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Edit(sql.Enemy enemy)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -167,19 +148,13 @@ namespace Datenbank_RPG.Controllers
 
                 connection.Close();
 
-                return Redirect("/Enemies");
+                return Redirect("/Enemies/Index");
             }
         }
 
         public IActionResult Delete(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec removeEnemy @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -193,7 +168,7 @@ namespace Datenbank_RPG.Controllers
 
                 Console.WriteLine();
 
-                return Redirect("/Enemies");
+                return Redirect("/Enemies/Index");
             }
         }
 

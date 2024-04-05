@@ -258,6 +258,29 @@ as
 	where player.name like @search + '%';
 go
 
+create procedure searchItem @search varchar(64)
+as
+	select item.id, item.name, itemType, iT.name as itemname, itemPower, gold, 1 as amount from item
+	INNER JOIN itemType as iT on itemType = iT.id
+	where item.name like @search + '%';
+go
+
+create procedure searchInventory @search varchar(64)
+as
+	select it.id, it.name, itName.name as itemname, it.itemPower, amount, it.gold from inventory
+	INNER JOIN item as it on inventory.itemId = it.id
+	INNER JOIN itemType as itName on it.itemType = itName.id
+	where it.name like @search + '%';
+go
+
+create procedure searchEnemy @search varchar(64)
+as
+	select enemy.id, enemy.name, enemy.life, enemy.maxLife, enemy.defense, e.name as type, e.attack, e.attackDelay from enemy 
+	inner join enemyType as e on e.id = enemy.enemyTypeId
+	where enemy.name like @search + '%';
+go
+
+
 create procedure sortInventoryByAmount
 as
 	select it.id, it.name, amount from inventory
@@ -448,3 +471,6 @@ exec displayEnemyGraveyard_enemyID @id = 0;
 
 
 exec displayEnemies @id = -1; 
+
+insert into player select player.name, player.life, player.maxlife, player.defense, player.gold, player.classId from player cross join player as plr
+

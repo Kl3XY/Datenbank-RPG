@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datenbank-RPG", "Datenbank-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sql", "sql\sql.csproj", "{67FC298F-1971-43DE-AB35-433F8CE1CA1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web API", "Datenbank RPG\Web API.csproj", "{17B57C6A-D8D0-4946-B434-62CFC3DF9245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web API", "Datenbank RPG\Web API.csproj", "{17B57C6A-D8D0-4946-B434-62CFC3DF9245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

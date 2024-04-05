@@ -1,74 +1,98 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿@model sql.search
+@*
+       
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var listEntity = ViewData["listOfPlayers"] as List<sql.Player>;
     ViewData["Title"] = "Datenbank Rollenspiel!";
 }
+<script src="./node_modules/rpg-awesome/css/rpg-awesome.min.css" crossorigin="anonymous"></script>
 <style>
-    body {
+    .entryBackdrop {
+        height: 10vw;
+        width: 10vw;
+        display: inline-grid;
+        padding: 15px;
+        margin-bottom: 5px;
+        border-color: white;
+        border: 5px;
+        border-style: solid;
         background-color: black;
-        color: white;
     }
 
-    a {
-        font-family: 'Retro Computer';
-        color: inherit;
-        text-decoration: none;
+    .entryBackdrop:hover {
+        background-color: #333333;
     }
 
     .container {
-        align-content: center;
+        align-items: center;
         text-align: center;
     }
 
-    .dropDownContainer {
-        display: block;
-        position: relative;
-        padding-left: 18px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+    input[type=text] {
+        width: 70%;
     }
 
-    .dropDownSquare {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 2px;
-        padding-left: 15px;
-        padding-right: 15px;
-        transition-duration: 0.2s;
-        border-radius: 8px;
+    input[type=submit] {
+        width: 20%;
     }
 
-    .playerInfoButton {
-        border: none;
-        color: black;
-        font-size: 10px;
-        height: 0px;
-        width: 0px;
-        opacity: 0;
+    @@media only screen and (max-width: 1220px) {
+      /* For mobile phones: */
+      .entryBackdrop {
+          width: 70vw;
+          height: 30vh;
+      }
     }
 
 </style>
 
 <div class="container">
-    <ul>
-    @foreach (var player in ViewData["listOfPlayers"] as List<sql.Player>)
+    @using (Html.BeginForm())
     {
-
-        <label class="dropDownContainer">
-            <li class="dropDownSquare">@Html.ActionLink($"{@player.className} | {@player.Name} >>", "ShowPlayer", new { @id = @player.Id })</li> <br></br>
-        </label>
-        <p></p>
+        <span>
+            Search <br>
+            @Html.TextBoxFor(m => m.searchTerm)
+        </span>
+        <span><Input id="Submit1" type="submit" value="Search"></Input></span>
+        
+        <br><br>
     }
-    <label class="dropDownContainer">
-        <li class="dropDownSquare">@Html.ActionLink($">ADD PLAYER<", "Create", new { @id = 1 })</li> <br></br>
-    </label>
-    </ul>
+    @if (sql.cmds.search != "")
+    {
+        <div>you searched for: @sql.cmds.search</div>
+    }
+    <div>&nbsp;</div>
+    @if (listEntity.Count == 0)
+    {
+        <div>Your search resulted in nothing</div>
+        <div style="font-size:64px; color:#333338">(;-;)</div>
+        <br>
+    }
+    @foreach (var player in listEntity)
+    {
+        <a class="entryBackdrop" href="@Url.Action("ShowPlayer", "Player", new { @id = @player.Id })">
+            <div class="entryContent">
+                @player.Name
+            </div>
+            <div class="entryContent" style="position: relative">
+                <p style="display: flex; align-items: flex-end; align-content: center;">
+                    <div>
+                        @player.className <br>
+                        HP: @player.Life/@player.MaxLife
+                    </div>
+                </p>
+            </div>
+        </a>
+    }
+
+    <a class="entryBackdrop" href="@Url.Action("Create", "Player")">
+        <div class="entryContent">
+            Create new player!
+        </div>
+        <i class="material-symbols-outlined">add</i>
+    </a>
 </div>
 
 

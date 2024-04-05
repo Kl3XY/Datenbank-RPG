@@ -8,28 +8,36 @@
 
 }
 
-<h2>ITEM CREATION</h2>
+
+<!DOCTYPE html>
+
+<head>
+
+</head>
+<body>
+    <h2>ITEM EDIT</h2>
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => m.Name) <br />
+            @Html.TextBoxFor(m => m.Name, new { @Value = Model.Name })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ItemPower) <br />
+            @Html.TextBoxFor(m => m.ItemPower, new { @Value = Model.ItemPower, type = "number" })
+        </div>
+        <div >
+            @Html.LabelFor(m => m.ItemType)
+        </div>
+        <select asp-for="ItemType" asp-items="Html.GetEnumSelectList<itemType>()"></select>
+        <br />
+        <div>
+            @Html.LabelFor(m => m.Gold) <br />
+            @Html.TextBoxFor(m => m.Gold, new { @Value = Model.Gold, type = "number" })
+        </div>
+        <br></br>
+        <Input id="Submit1" type="submit" value="submit"></Input>
+    }
+</body>
 
 
-
-@using (Html.BeginForm())
-{
-    <div>
-        @Html.LabelFor(m => m.Name) <br />
-        @Html.TextBoxFor(m => m.Name, new { @Value = Model.Name})
-    </div>
-    <div>
-        @Html.LabelFor(m => m.ItemPower) <br />
-        @Html.TextBoxFor(m => m.ItemPower, new { @Value = Model.ItemPower, type = "number" })
-    </div>
-    <div>
-        @Html.LabelFor(m => m.ItemType)
-    </div>
-    <select asp-for="ItemType" asp-items="Html.GetEnumSelectList<itemType>()"></select>
-    <br />
-    <div>
-        @Html.LabelFor(m => m.Gold) <br />
-        @Html.TextBoxFor(m => m.Gold, new { @Value=Model.Gold, type = "number" })
-    </div>
-    <Input id="Submit1" type="submit" value="submit"></Input>
-}

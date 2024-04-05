@@ -7,8 +7,20 @@
     ViewBag.Title = "Create an enemy";
 
 }
+<style>
+    .siteMap {
+        font-size: 12px;
+    }
+</style>
+<div class="siteMap">
+    @Html.ActionLink("Enemies", "Index")
+    >> 
+    @Html.ActionLink("ShowEnemy", "Enemies", new { @id = @Model.Id })
+    >> 
+    Edit
+</div>
 
-<h2>ITEM EDIT (ID: @Model.Id)</h2>
+<h2>ENEMY EDIT (ID: @Model.Id)</h2>
 
 @using (Html.BeginForm())
 {
@@ -29,5 +41,6 @@
         @Html.LabelFor(m => m.Defense) <br />
         @Html.TextBoxFor(m => m.Defense, new { @Value = Model.Defense, type = "number" })
     </div>
+    <br>
     <Input id="Submit1" type="submit" value="submit"></Input>
 }

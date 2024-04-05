@@ -12,36 +12,35 @@ namespace Datenbank_RPG.Controllers
     public class ItemController : Controller
     {
         public string Name { get; set; } = "Item";
+        [HttpGet]
         public IActionResult Index()
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
-                var getInventoryCommand = new SqlCommand("exec displayInventory", connection);
+                var displayItemsCommand = new SqlCommand("exec searchInventory @search = @d", connection);
+                displayItemsCommand.Parameters.Add(new SqlParameter("@d", System.Data.SqlDbType.VarChar, 64));
+                displayItemsCommand.Parameters[0].Value = sql.cmds.search;
 
-                var listItem = sql.cmds.GetItems(getInventoryCommand);
+                var list = sql.cmds.GetItems(displayItemsCommand);
 
-
-                ViewData["Items"] = listItem;
-
+                ViewData["Items"] = list;
+                ViewData["listSize"] = list.Count;
+                sql.cmds.search = "";
                 return View();
             }
         }
 
+        [HttpPost]
+        public IActionResult Index(sql.search search)
+        {
+            if (search.searchTerm == null) { search.searchTerm = ""; }
+            sql.cmds.search = search.searchTerm;
+            return Redirect($"Index");
+        }
+
         public IActionResult showitem(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var getInventoryCommand = new SqlCommand("exec list_item @id = @i", connection);
                 getInventoryCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -64,11 +63,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Create(sql.Item item)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            using (var connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -89,19 +84,13 @@ namespace Datenbank_RPG.Controllers
 
                 connection.Close();
 
-                return Redirect("/");
+                return Redirect("/Database/Index");
             }
         }
 
         public IActionResult Delete(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec removeItemFromInventory @itemId = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -115,20 +104,14 @@ namespace Datenbank_RPG.Controllers
 
                 Console.WriteLine();
 
-                return Redirect("/Item");
+                return Redirect("/Item/Index");
             }
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec list_item @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -145,13 +128,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Edit(sql.Item item)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -167,7 +144,7 @@ namespace Datenbank_RPG.Controllers
 
                 connection.Close();
 
-                return Redirect("/Item");
+                return Redirect("/Item/Index");
             }
         }
     }

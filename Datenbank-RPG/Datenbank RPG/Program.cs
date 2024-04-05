@@ -27,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Database}/{action=Index}/{id?}");
+    pattern: "{controller=Database}/{action=initServer}/{id?}");
 
 app.Run();

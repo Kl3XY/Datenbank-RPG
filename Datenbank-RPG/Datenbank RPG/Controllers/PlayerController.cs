@@ -13,39 +13,35 @@ namespace Datenbank_RPG.Controllers
     }
     public class PlayerController : Controller
     {
-
+        [HttpGet]
         public IActionResult Index()
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
-                var displayPlayersCommand = new SqlCommand("exec displayPlayers @id = @i", connection);
-                displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
-                displayPlayersCommand.Parameters[0].Value = -1;
+                var displayPlayersCommand = new SqlCommand("exec searchPlayer @search = @d", connection);
+                displayPlayersCommand.Parameters.Add(new SqlParameter("@d", System.Data.SqlDbType.VarChar, 64));
+                displayPlayersCommand.Parameters[0].Value = sql.cmds.search;
 
                 var list = sql.cmds.GetPlayers(displayPlayersCommand);
 
                 ViewData["listOfPlayers"] = list;
                 ViewData["listSize"] = list.Count;
-
+                sql.cmds.search = "";
                 return View();
             }
         }
 
+        [HttpPost]
+        public IActionResult Index(sql.search search)
+        {
+                if (search.searchTerm == null) { search.searchTerm = ""; }
+                sql.cmds.search = search.searchTerm;
+                return Redirect($"Index");
+        }
+
         public IActionResult showPlayer(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec displayPlayers @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -84,11 +80,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Create(sql.Player player)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            using (var connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -109,20 +101,14 @@ namespace Datenbank_RPG.Controllers
 
                 connection.Close();
 
-                return Redirect("/Player");
+                return Redirect("/Player/Index");
             }
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec displayPlayers @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -139,13 +125,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Edit(sql.Player player)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -172,19 +152,13 @@ namespace Datenbank_RPG.Controllers
 
                 connection.Close();
 
-                return Redirect("/Player");
+                return Redirect("/Player/Index");
             }
         }
 
         public IActionResult Delete(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec removePlayer @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));

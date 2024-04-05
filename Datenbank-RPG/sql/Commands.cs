@@ -12,6 +12,8 @@ namespace sql
 {
     public static class cmds
     {
+        public static string connection = null;
+        public static string search = "";
         public static DataTable GetDataTable(SqlCommand sqlCommand)
         {
             using (sqlCommand)

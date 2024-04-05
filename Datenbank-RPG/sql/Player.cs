@@ -59,4 +59,16 @@ namespace sql
             this.type = type;
         }
     }
+
+    public class stringBuilder
+    {
+        public string connectionString { get; set; }
+        public stringBuilder() { }
+    }
+
+    public class search
+    {
+        public string searchTerm { get; set; }
+        public search() { }
+    }
 }

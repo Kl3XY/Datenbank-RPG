@@ -1,0 +1,23 @@
+﻿@model sql.stringBuilder;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_InitLayout";
+}
+<style>
+    #header wrap {
+        visibility: hidden;
+    }
+</style>
+
+
+SQL Address
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.TextBoxFor(m => m.connectionString)
+    </div>
+    <br></br>
+    <Input id="Submit1" type="submit" value="submit"></Input>
+}

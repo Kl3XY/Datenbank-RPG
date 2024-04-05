@@ -7,29 +7,38 @@
     ViewBag.Title = "Create a Player";
 
 }
+<style>
+    button {
+        border-style: none;
+        background-color: black;
+        color: white;
+        font-size: 30px;
+    }
 
-<h2>Player CREATION</h2>
+    button:hover {
+        cursor: pointer;
+    }
 
+</style>
+
+
+<h2 style="display: inline">Player CREATION</h2>
 
 
 @using(Html.BeginForm())
 {
-    <div>
-        @Html.LabelFor(m => m.Name) <br />
-        @Html.TextBoxFor(m => m.Name)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.MaxLife) <br />
-        @Html.TextBoxFor(m => m.MaxLife, new { type = "number" })
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Defense) <br />
-        @Html.TextBoxFor(m => m.Defense, new { type = "number" })
-    </div>
-    <div>
-        @Html.LabelFor(m => m.classId)
-    </div>
+    @Html.LabelFor(m => m.Name) <br />
+    @Html.TextBoxFor(m => m.Name)
+    <br>
+    @Html.LabelFor(m => m.MaxLife) <br />
+    @Html.TextBoxFor(m => m.MaxLife, new { type = "number" })
+    <br>
+    @Html.LabelFor(m => m.Defense) <br />
+    @Html.TextBoxFor(m => m.Defense, new { type = "number" })
+    <br>
+    @Html.LabelFor(m => m.classId)
+    <br>
     <select asp-for="classId" asp-items="Html.GetEnumSelectList<classID>()"></select> <br/>
     <br />
-    <Input id="Submit1" type="submit" value="submit"></Input>
+    <Input id="Submit1" type="submit" value="Create"></Input>
 }

@@ -17,111 +17,119 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Datenbank_RPG
 build_property.RootNamespace = Datenbank_RPG
-build_property.ProjectDir = C:\Users\Martin\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\
+build_property.ProjectDir = C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Martin\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG
+build_property.MSBuildProjectDirectory = C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/allitems.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/allitems.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcYWxsaXRlbXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Delete.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Edit.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Index.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/ShowItem.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/initServer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcaW5pdFNlcnZlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/ShowItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcU2hvd0l0ZW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Create.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5lbWllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Delete.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5lbWllc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Edit.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5lbWllc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Index.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5lbWllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/ShowEnemy.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/ShowEnemy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5lbWllc1xTaG93RW5lbXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Create.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Delete.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Edit.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Index.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/ShowItem.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Item/ShowItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxTaG93SXRlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Create.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Delete.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Edit.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Index.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/ShowPlayer.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Player/ShowPlayer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWVyXFNob3dQbGF5ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/Error.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/_ViewImports.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/_ViewStart.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Martin/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_Layout.cshtml]
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_InitLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Jbml0TGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-heauxgaumd
+
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fsif45h16t

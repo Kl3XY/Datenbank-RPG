@@ -11,20 +11,35 @@ namespace Datenbank_RPG.Controllers
     {
         //
         // GET: /Database/
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult allItems()
         {
-            return View();
+            using (var connection = new SqlConnection(sql.cmds.connection))
+            {
+                var displayItemsCommand = new SqlCommand("exec searchItem @search = @d", connection);
+                displayItemsCommand.Parameters.Add(new SqlParameter("@d", System.Data.SqlDbType.VarChar, 64));
+                displayItemsCommand.Parameters[0].Value = sql.cmds.search;
+
+                var list = sql.cmds.GetItems(displayItemsCommand);
+
+                ViewData["Items"] = list;
+                ViewData["listSize"] = list.Count;
+                sql.cmds.search = "";
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult allItems(sql.search search)
+        {
+            if (search.searchTerm == null) { search.searchTerm = ""; }
+            sql.cmds.search = search.searchTerm;
+            return Redirect($"allItems");
         }
 
         public IActionResult items()
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var getInventoryCommand = new SqlCommand("exec displayInventory", connection);
 
@@ -39,13 +54,7 @@ namespace Datenbank_RPG.Controllers
 
         public IActionResult showitem(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var getInventoryCommand = new SqlCommand("exec list_item @id = @i", connection);
                 getInventoryCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -60,37 +69,40 @@ namespace Datenbank_RPG.Controllers
             }
         }
 
-        public IActionResult allItems()
+        [HttpGet]
+        public IActionResult initServer()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult initServer(stringBuilder sB)
         {
             SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
 
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
+            sqlBuilder.ConnectionString = $"Server={sB.connectionString};Database=game;Integrated Security=True;TrustServerCertificate=true";
 
-            SqlConnection connection;
+            sql.cmds.connection = sqlBuilder.ConnectionString;
 
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
-                var getInventoryCommand = new SqlCommand("exec list_all_items", connection);
-
-                var listItem = sql.cmds.GetItems(getInventoryCommand);
-
-
-                ViewData["Items"] = listItem;
-
-                return View();
+                //Testing if connection works.
+                connection.Open();
+                connection.Close();
             }
+                
+                
+
+
+
+            return Redirect("/Player/Index");
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec list_item @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));
@@ -107,13 +119,7 @@ namespace Datenbank_RPG.Controllers
         [HttpPost]
         public IActionResult Edit(sql.Item item)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 connection.Open();
 
@@ -144,13 +150,7 @@ namespace Datenbank_RPG.Controllers
 
         public IActionResult Delete(int id)
         {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-            sqlBuilder.ConnectionString = $"Server=DESKTOP-PR3K8AO\\SQLEXPRESS;Database=game;Integrated Security=True;TrustServerCertificate=true";
-
-            SqlConnection connection;
-
-            using (connection = new SqlConnection(sqlBuilder.ConnectionString))
+            using (var connection = new SqlConnection(sql.cmds.connection))
             {
                 var displayPlayersCommand = new SqlCommand("exec deleteItem @id = @i", connection);
                 displayPlayersCommand.Parameters.Add(new SqlParameter("@i", System.Data.SqlDbType.Int));

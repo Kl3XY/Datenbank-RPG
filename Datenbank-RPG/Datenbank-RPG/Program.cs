@@ -46,7 +46,7 @@ internal class Program
                 ConsoleTable menu = new ConsoleTable();
                 menu.Options.EnableCount = false;
 
-                var menuOptions = new string[] {"Adventure", "Inventory", "Shop", "Statistics" };
+                var menuOptions = new string[] {"Adventure", "Inventory", "Shop", "Statistics", "Trash Fill" };
 
                 for(var i = 0; i < menuOptions.Length; i++)
                 {
@@ -94,6 +94,23 @@ internal class Program
                             players.Clear();
                             Statistics.loopSection = true;
                             Statistics.Menu();
+                            break;
+                        case 4:
+                            Console.Clear();
+                            players.Clear();
+                            for (var i = 0; i < 1000; i++) {
+                                int rnd = Program.rng.Next(1);
+                                var GenerateName = NameGenerator.Generate((Gender)rnd);
+
+                                Console.WriteLine("{0} has entered the party!\nPress any key to enter.", GenerateName);
+                                var cmd = prepared_statement.getStatement("addPlayer");
+                                cmd.Parameters[0].Value = GenerateName;
+                                cmd.Parameters[1].Value = (int)Program.rng.Next(100);
+                                cmd.Parameters[2].Value = 20;
+                                cmd.Parameters[3].Value = (int)Program.rng.Next(1, 4);
+
+                                cmd.ExecuteNonQuery();
+                            }
                             break;
                     } 
                 }

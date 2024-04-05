@@ -11,3 +11,16 @@ C:\Users\Martin\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\
 C:\Users\Martin\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\refint\sql.dll
 C:\Users\Martin\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.pdb
 C:\Users\Martin\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\ref\sql.dll
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\bin\Debug\net8.0\sql.deps.json
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\bin\Debug\net8.0\sql.dll
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\bin\Debug\net8.0\sql.pdb
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.csproj.AssemblyReference.cache
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.AssemblyInfoInputs.cache
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.AssemblyInfo.cs
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.csproj.CoreCompileInputs.cache
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.sourcelink.json
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.dll
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\refint\sql.dll
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\sql.pdb
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\sql\obj\Debug\net8.0\ref\sql.dll

@@ -25,7 +25,7 @@ COST: @selitem.Gold
 POWER: @selitem.ItemPower
 <br>
 <br></br>
-<label class="dropDownContainer">
-    <li class="dropDownSquare">@Html.ActionLink($"EDIT", "Edit", new { @id = selitem.Id })</li> <br></br>
-    <li class="dropDownSquare">@Html.ActionLink($"REMOVE", "Delete", new { @id = selitem.Id })</li> <br></br>
-</label>
+<div class="dropDownContainer">
+    <div class="dropDownSquare">@Html.ActionLink($"EDIT", "Edit", new { @id = selitem.Id })</div> <br></br>
+    <div class="dropDownSquare">@Html.ActionLink($"REMOVE", "Delete", new { @id = selitem.Id })</div> <br></br>
+</div>
