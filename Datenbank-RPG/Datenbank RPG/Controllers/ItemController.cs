@@ -1,5 +1,6 @@
 ﻿using Datenbank_RPG.Models;
 using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 using System.Data.SqlClient;
 
 namespace Datenbank_RPG.Controllers
@@ -12,6 +13,7 @@ namespace Datenbank_RPG.Controllers
     public class ItemController : Controller
     {
         public string Name { get; set; } = "Item";
+        [Breadcrumb("/Inventory")]
         [HttpGet]
         public IActionResult Index()
         {
@@ -25,6 +27,7 @@ namespace Datenbank_RPG.Controllers
 
                 ViewData["Items"] = list;
                 ViewData["listSize"] = list.Count;
+                ViewData["route"] = RouteData.Values;
                 sql.cmds.search = "";
                 return View();
             }
@@ -35,9 +38,11 @@ namespace Datenbank_RPG.Controllers
         {
             if (search.searchTerm == null) { search.searchTerm = ""; }
             sql.cmds.search = search.searchTerm;
+            ViewData["route"] = RouteData.Values;
             return Redirect($"Index");
         }
 
+        [Breadcrumb("/Show Inventory Item")]
         public IActionResult showitem(int id)
         {
             using (var connection = new SqlConnection(sql.cmds.connection))
@@ -48,7 +53,7 @@ namespace Datenbank_RPG.Controllers
 
                 var listItem = sql.cmds.GetItems(getInventoryCommand);
 
-
+                ViewData["route"] = RouteData.Values;
                 ViewData["Item"] = listItem[0];
 
                 return View();
@@ -58,6 +63,7 @@ namespace Datenbank_RPG.Controllers
         public IActionResult Create()
         {
             var item = new sql.Item();
+            ViewData["route"] = RouteData.Values;
             return View( item );
         }
         [HttpPost]
@@ -83,6 +89,7 @@ namespace Datenbank_RPG.Controllers
                 createItemCommand.ExecuteNonQuery();
 
                 connection.Close();
+                ViewData["route"] = RouteData.Values;
 
                 return Redirect("/Database/Index");
             }
@@ -101,13 +108,14 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.ExecuteNonQuery();
 
                 connection.Close();
-
+                ViewData["route"] = RouteData.Values;
                 Console.WriteLine();
 
                 return Redirect("/Item/Index");
             }
         }
 
+        [Breadcrumb("/Change Amount")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -120,6 +128,7 @@ namespace Datenbank_RPG.Controllers
                 var listEnemy = sql.cmds.GetItems(displayPlayersCommand);
 
                 Console.WriteLine();
+                ViewData["route"] = RouteData.Values;
 
                 return View(listEnemy[0]);
             }
@@ -141,7 +150,7 @@ namespace Datenbank_RPG.Controllers
 
 
                 displayPlayersCommand.ExecuteNonQuery();
-
+                ViewData["route"] = RouteData.Values;
                 connection.Close();
 
                 return Redirect("/Item/Index");

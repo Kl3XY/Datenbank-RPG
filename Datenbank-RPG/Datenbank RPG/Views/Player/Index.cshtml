@@ -1,4 +1,5 @@
 ﻿@model sql.search
+@using Microsoft.AspNetCore.Http;
 @*
        
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -6,58 +7,27 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 @{
     var listEntity = ViewData["listOfPlayers"] as List<sql.Player>;
     ViewData["Title"] = "Datenbank Rollenspiel!";
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
-<script src="./node_modules/rpg-awesome/css/rpg-awesome.min.css" crossorigin="anonymous"></script>
-<style>
-    .entryBackdrop {
-        height: 10vw;
-        width: 10vw;
-        display: inline-grid;
-        padding: 15px;
-        margin-bottom: 5px;
-        border-color: white;
-        border: 5px;
-        border-style: solid;
-        background-color: black;
-    }
-
-    .entryBackdrop:hover {
-        background-color: #333333;
-    }
-
-    .container {
-        align-items: center;
-        text-align: center;
-    }
-
-    input[type=text] {
-        width: 70%;
-    }
-
-    input[type=submit] {
-        width: 20%;
-    }
-
-    @@media only screen and (max-width: 1220px) {
-      /* For mobile phones: */
-      .entryBackdrop {
-          width: 70vw;
-          height: 30vh;
-      }
-    }
-
-</style>
-
 <div class="container">
     @using (Html.BeginForm())
     {
-        <span>
-            Search <br>
+        <div>
+            Search
             @Html.TextBoxFor(m => m.searchTerm)
-        </span>
-        <span><Input id="Submit1" type="submit" value="Search"></Input></span>
-        
-        <br><br>
+        </div>
+        <br>
+        <Input id="Submit1" type="submit" value="Submit"></Input>
+        <br>
+
+        <br>
     }
     @if (sql.cmds.search != "")
     {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "seE0DhxbB7IeSdvSGYJGr0gGgz7lV0l31ZSdel8N0Fn4i6fvxb8EYj5tUC8242JIW0WdOHY6V/5QfkHd8ltnqw==",
+  "dgSpecHash": "PMZk8Q1uK+Mc2HPodHcF2fkcWsSpFRtzy9Wfivlx0D1nVG4e5y58v2ASLjKGOuICSVRZ4gRA5seH8avbZhfl1Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Martinga\\Desktop\\Datenbank-RPG\\Datenbank-RPG\\Datenbank-RPG\\Datenbank RPG\\Web API.csproj",
   "expectedPackageFiles": [
@@ -137,6 +137,7 @@
     "C:\\Users\\Martinga\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Martinga\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Martinga\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Martinga\\.nuget\\packages\\smartbreadcrumbs\\3.6.1\\smartbreadcrumbs.3.6.1.nupkg.sha512",
     "C:\\Users\\Martinga\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\Martinga\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
     "C:\\Users\\Martinga\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",

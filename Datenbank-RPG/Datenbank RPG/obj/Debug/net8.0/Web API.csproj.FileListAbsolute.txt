@@ -549,3 +549,6 @@ C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RP
 C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\obj\Debug\net8.0\Web API.genruntimeconfig.cache
 C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\obj\Debug\net8.0\ref\Web API.dll
 C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\obj\Debug\net8.0\scopedcss\Views\Shared\_InitLayout.cshtml.rz.scp.css
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout_Alt.cshtml.rz.scp.css
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\bin\Debug\net8.0\SmartBreadcrumbs.dll
+C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG\obj\Debug\net8.0\Web API.MvcApplicationPartsAssemblyInfo.cs

@@ -6,19 +6,21 @@
 @{
     ViewBag.Title = "Create an enemy";
 
+
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
 <style>
     .siteMap {
         font-size: 12px;
     }
 </style>
-<div class="siteMap">
-    @Html.ActionLink("Enemies", "Index")
-    >> 
-    @Html.ActionLink("ShowEnemy", "Enemies", new { @id = @Model.Id })
-    >> 
-    Edit
-</div>
 
 <h2>ENEMY EDIT (ID: @Model.Id)</h2>
 

@@ -26,10 +26,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Martinga\Desktop\Datenbank-RPG\Datenbank-RPG\Datenbank-RPG\Datenbank RPG
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/allitems.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcYWxsaXRlbXMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/ShowItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcU2hvd0l0ZW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Database/toggleDarkMode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YWJhc2VcdG9nZ2xlRGFya01vZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Enemies/Create.cshtml]
@@ -133,3 +133,7 @@ build_metadata.AdditionalFiles.CssScope = b-heauxgaumd
 [C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fsif45h16t
+
+[C:/Users/Martinga/Desktop/Datenbank-RPG/Datenbank-RPG/Datenbank-RPG/Datenbank RPG/Views/Shared/_Layout_Alt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfQWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-4xgetx3sz0

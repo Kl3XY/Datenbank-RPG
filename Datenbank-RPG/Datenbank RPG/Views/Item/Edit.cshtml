@@ -6,8 +6,15 @@
 @{
     ViewBag.Title = "Create a item";
 
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
-
 <h2>ITEM EDIT</h2>
 
 

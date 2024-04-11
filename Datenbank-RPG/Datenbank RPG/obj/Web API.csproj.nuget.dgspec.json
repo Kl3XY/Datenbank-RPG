@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "SmartBreadcrumbs": {
+              "target": "Package",
+              "version": "[3.6.1, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.6, )"

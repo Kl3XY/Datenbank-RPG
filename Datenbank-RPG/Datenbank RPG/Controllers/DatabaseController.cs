@@ -4,6 +4,8 @@ using System.Text.Encodings.Web;
 using System.Data.SqlClient;
 using sql;
 using Datenbank_RPG.Models;
+using Microsoft.AspNetCore.Http;
+using SmartBreadcrumbs.Attributes;
 
 namespace Datenbank_RPG.Controllers
 {
@@ -11,8 +13,9 @@ namespace Datenbank_RPG.Controllers
     {
         //
         // GET: /Database/
+        [Breadcrumb("/All Items")]
         [HttpGet]
-        public IActionResult allItems()
+        public IActionResult Index()
         {
             using (var connection = new SqlConnection(sql.cmds.connection))
             {
@@ -21,9 +24,9 @@ namespace Datenbank_RPG.Controllers
                 displayItemsCommand.Parameters[0].Value = sql.cmds.search;
 
                 var list = sql.cmds.GetItems(displayItemsCommand);
-
                 ViewData["Items"] = list;
                 ViewData["listSize"] = list.Count;
+                ViewData["route"] = RouteData.Values;
                 sql.cmds.search = "";
                 return View();
             }
@@ -34,7 +37,8 @@ namespace Datenbank_RPG.Controllers
         {
             if (search.searchTerm == null) { search.searchTerm = ""; }
             sql.cmds.search = search.searchTerm;
-            return Redirect($"allItems");
+            ViewData["route"] = RouteData.Values;
+            return Redirect($"Index");
         }
 
         public IActionResult items()
@@ -45,13 +49,13 @@ namespace Datenbank_RPG.Controllers
 
                 var listItem = sql.cmds.GetItems(getInventoryCommand);
 
-
+                ViewData["route"] = RouteData.Values;
                 ViewData["Items"] = listItem;
 
                 return View();
             }
         }
-
+        [Breadcrumb("/Show Item")]
         public IActionResult showitem(int id)
         {
             using (var connection = new SqlConnection(sql.cmds.connection))
@@ -62,17 +66,32 @@ namespace Datenbank_RPG.Controllers
 
                 var listItem = sql.cmds.GetItems(getInventoryCommand);
 
-
+                ViewData["route"] = RouteData.Values;
                 ViewData["Item"] = listItem[0];
 
                 return View();
             }
         }
-
+        [Breadcrumb("/Init Server")]
         [HttpGet]
         public IActionResult initServer()
         {
+            ViewData["route"] = RouteData.Values;
+            if (HttpContext.Session.GetInt32("_DarkMode") == null)
+            {
+                HttpContext.Session.SetInt32("_DarkMode", 0);
+            }
+            
             return View();
+        }
+        [Breadcrumb("/Toggle dark mode")]
+        [HttpGet]
+        public IActionResult toggleDarkMode(string url)
+        {
+            bool updatedSetting = !Convert.ToBoolean(HttpContext.Session.GetInt32("_DarkMode"));
+            HttpContext.Session.SetInt32("_DarkMode", Convert.ToInt32(updatedSetting));
+            sql.cmds.darkMode = updatedSetting;
+            return Redirect(url);
         }
 
 
@@ -91,14 +110,14 @@ namespace Datenbank_RPG.Controllers
                 connection.Open();
                 connection.Close();
             }
-                
-                
+
+            ViewData["route"] = RouteData.Values;
 
 
 
             return Redirect("/Player/Index");
         }
-
+        [Breadcrumb("/Edit Item")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -109,7 +128,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.Parameters[0].Value = id;
 
                 var listEnemy = sql.cmds.GetItems(displayPlayersCommand);
-
+                ViewData["route"] = RouteData.Values;
                 Console.WriteLine();
 
                 return View(listEnemy[0]);
@@ -143,8 +162,8 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.ExecuteNonQuery();
 
                 connection.Close();
-
-                return Redirect("/Database/allitems");
+                ViewData["route"] = RouteData.Values;
+                return Redirect("/Database/Index");
             }
         }
 
@@ -159,12 +178,12 @@ namespace Datenbank_RPG.Controllers
                 connection.Open();
 
                 displayPlayersCommand.ExecuteNonQuery();
-
+                
                 connection.Close();
 
                 Console.WriteLine();
-
-                return Redirect("/Database/allitems");
+                ViewData["route"] = RouteData.Values;
+                return Redirect("/Database/Index");
             }
         }
     }

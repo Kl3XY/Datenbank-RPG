@@ -5,9 +5,15 @@
 *@
 @{
     ViewBag.Title = "Create a Player";
-
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
-
 <h2>Player edit</h2>
 
 

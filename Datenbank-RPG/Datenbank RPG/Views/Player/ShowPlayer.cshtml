@@ -4,6 +4,14 @@
 @{
     ViewData["Title"] = "Datenbank Rollenspiel!";
     sql.Player player = ViewData["Player"] as sql.Player;
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
 <style>
     .item {
@@ -15,7 +23,6 @@
         color: darkred;
     }
 </style>
-
 <h2>@player.Name (Id: @player.Id)</h2>
 
 CLASS: @player.className (Class ID: @player.classId)<br>

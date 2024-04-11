@@ -1,14 +1,35 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SmartBreadcrumbs.Attributes;
+using SmartBreadcrumbs.Extensions;
 using System.Data.SqlClient;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<game>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("game") ?? throw new InvalidOperationException("Connection string 'game' not found.")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-    var app = builder.Build();
+
+
+builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
+{
+    options.TagName = "nav";
+    options.TagClasses = "";
+    options.OlClasses = "bcList";
+    options.LiClasses = "bcItem";
+    options.ActiveLiClasses = "bcItem";
+    options.SeparatorElement = "";
+});
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -24,6 +45,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

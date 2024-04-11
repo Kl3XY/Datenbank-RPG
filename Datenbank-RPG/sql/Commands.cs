@@ -14,6 +14,7 @@ namespace sql
     {
         public static string connection = null;
         public static string search = "";
+        public static bool darkMode = true;
         public static DataTable GetDataTable(SqlCommand sqlCommand)
         {
             using (sqlCommand)

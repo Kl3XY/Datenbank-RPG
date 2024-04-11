@@ -1,11 +1,76 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿@model sql.search
+@*
+
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var listEntity = ViewData["Items"] as List<sql.Item>;
     ViewData["Title"] = "Datenbank Rollenspiel!";
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
+<script src="./node_modules/rpg-awesome/css/rpg-awesome.min.css" crossorigin="anonymous"></script>
+<style>
+ 
+</style>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div>
+            Search
+            @Html.TextBoxFor(m => m.searchTerm)
+        </div>
+        <br>
+        <Input id="Submit1" type="submit" value="Submit"></Input>
+        <br>
+
+        <br>
+    }
+    @if (sql.cmds.search != "")
+    {
+        <div>you searched for: @sql.cmds.search</div>
+    }
+    <div>&nbsp;</div>
+    @if (listEntity.Count == 0)
+    {
+        <div>Your search resulted in nothing</div>
+        <div style="font-size:64px; color:#333338">(;-;)</div>
+        <br>
+    }
+    @foreach (var item in listEntity)
+    {
+        <a class="entryBackdrop" href="@Url.Action("ShowItem", "Database", new { @id = item.Id })">
+            @item.amount x
+            <div class="entryContent">
+                @item.Name
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div class="entryContent">
+                @item.ItemType
+                <br>
+                Strength: @item.ItemPower
+                <br>
+                Price: @item.Gold
+            </div>
+        </a>
+    }
+
+    <a class="entryBackdrop" href="@Url.Action("Create", "Item")">
+        <div class="entryContent">
+            Create new item!
+        </div>
+        <i class="material-symbols-outlined">add</i>
+    </a>
+</div>
 
 
-<body>
-    
-</body>
+

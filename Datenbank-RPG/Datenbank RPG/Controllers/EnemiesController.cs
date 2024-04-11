@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 using sql;
 using System.Data.SqlClient;
 
@@ -10,6 +11,7 @@ namespace Datenbank_RPG.Controllers
     }
     public class EnemiesController : Controller
     {
+        [Breadcrumb("/All Enemies")]
         [HttpGet]
         public IActionResult Index()
         {
@@ -23,19 +25,23 @@ namespace Datenbank_RPG.Controllers
 
                 ViewData["Enemies"] = list;
                 ViewData["listSize"] = list.Count;
+                ViewData["route"] = RouteData.Values;
                 sql.cmds.search = "";
                 return View();
             }
         }
+
 
         [HttpPost]
         public IActionResult Index(sql.search search)
         {
             if (search.searchTerm == null) { search.searchTerm = ""; }
             sql.cmds.search = search.searchTerm;
+            ViewData["route"] = RouteData.Values;
             return Redirect($"Index");
         }
 
+        [Breadcrumb("/Show Enemy")]
         public IActionResult showEnemy(int id)
         {
             using (var connection = new SqlConnection(sql.cmds.connection))
@@ -59,19 +65,22 @@ namespace Datenbank_RPG.Controllers
                 ViewData["Enemy"] = listEnemy[0];
                 ViewData["listPlayerGraveyard"] = listPlayerGraveyard;
                 ViewData["listEnemyGraveyard"] = listEnemyGraveyard;
+                ViewData["route"] = RouteData.Values;
+
 
                 return View();
             }
         }
 
+        [Breadcrumb("/Create Enemy")]
         [HttpGet]
         public IActionResult Create()
         {
             var enemy = new sql.Enemy();
             enemy = new sql.Enemy();
+            ViewData["route"] = RouteData.Values;
             return View(enemy);
         }
-
 
         [HttpPost]
         public IActionResult Create(sql.Enemy enemy)
@@ -94,13 +103,13 @@ namespace Datenbank_RPG.Controllers
                 addEnemyCommand.Parameters[3].Value = enemy.type;
 
                 addEnemyCommand.ExecuteNonQuery();
-
+                ViewData["route"] = RouteData.Values;
                 connection.Close();
 
                 return Redirect("/Enemies/Index");
             }
         }
-
+        [Breadcrumb("/Edit Enemy")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -111,7 +120,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.Parameters[0].Value = id;
 
                 var listEnemy = sql.cmds.GetEnemies(displayPlayersCommand);
-
+                ViewData["route"] = RouteData.Values;
                 Console.WriteLine();
 
                 return View(listEnemy[0]);
@@ -145,7 +154,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.Parameters[5].Value = enemy.type;
 
                 displayPlayersCommand.ExecuteNonQuery();
-
+                ViewData["route"] = RouteData.Values;
                 connection.Close();
 
                 return Redirect("/Enemies/Index");
@@ -165,7 +174,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.ExecuteNonQuery();
 
                 connection.Close();
-
+                ViewData["route"] = RouteData.Values;
                 Console.WriteLine();
 
                 return Redirect("/Enemies/Index");

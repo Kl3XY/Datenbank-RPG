@@ -4,6 +4,15 @@
 @{
     ViewData["Title"] = "Datenbank Rollenspiel!";
     sql.Enemy enemy = ViewData["Enemy"] as sql.Enemy;
+
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
 <style>
     .item {
@@ -12,7 +21,6 @@
     }
 
 </style>
-
 <h2>PLAYER: @enemy.Name (Id: @enemy.Id)</h2>
 
 NAME: @enemy.Name
@@ -27,13 +35,9 @@ ATTACK DELAY: @enemy.atkDelay
 <br>
 DEFENSE: @enemy.Defense
 <br>
-<br>
-<br>
-
-<div class="dropDownContainer">
-    <p class="dropDownSquare">@Html.ActionLink($"EDIT", "Edit", new { @id = enemy.Id })</p> <br></br>
-    <p class="dropDownSquare">@Html.ActionLink($"REMOVE", "Delete", new { @id = enemy.Id })</p> <br></br>
-</div>
+<a class="material-symbols-outlined" href="@Url.Action("Edit", "Enemies", new { @id = @enemy.Id })">edit</a>
+<a class="material-symbols-outlined" href="@Url.Action("Delete", "Enemies", new { @id = @enemy.Id })">delete</a>
+<br></br>
 
 ARCH NEMESIS: <br>
 @foreach (var plr in ViewData["listPlayerGraveyard"] as List<(string, string, string)>)

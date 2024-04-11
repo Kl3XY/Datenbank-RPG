@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 using System.Data.SqlClient;
 
 namespace Datenbank_RPG.Controllers
@@ -13,6 +14,7 @@ namespace Datenbank_RPG.Controllers
     }
     public class PlayerController : Controller
     {
+        [DefaultBreadcrumb]
         [HttpGet]
         public IActionResult Index()
         {
@@ -26,6 +28,8 @@ namespace Datenbank_RPG.Controllers
 
                 ViewData["listOfPlayers"] = list;
                 ViewData["listSize"] = list.Count;
+                ViewData["route"] = RouteData.Values;
+                                
                 sql.cmds.search = "";
                 return View();
             }
@@ -36,9 +40,11 @@ namespace Datenbank_RPG.Controllers
         {
                 if (search.searchTerm == null) { search.searchTerm = ""; }
                 sql.cmds.search = search.searchTerm;
-                return Redirect($"Index");
+            ViewData["route"] = RouteData.Values;
+            return Redirect($"Index");
         }
 
+        [Breadcrumb("/Show Player")]
         public IActionResult showPlayer(int id)
         {
             using (var connection = new SqlConnection(sql.cmds.connection))
@@ -66,15 +72,17 @@ namespace Datenbank_RPG.Controllers
                 ViewData["listItems"] = listItems;
                 ViewData["listPlayerGraveyard"] = listPlayerGraveyard;
                 ViewData["listEnemyGraveyard"] = listEnemyGraveyard;
+                ViewData["route"] = RouteData.Values;
 
                 return View();
             }
         }
-
+        [Breadcrumb("/Create Player")]
         [HttpGet]
         public IActionResult Create()
         {
             var player = new sql.Player();
+            ViewData["route"] = RouteData.Values;
             return View(player);
         }
         [HttpPost]
@@ -98,13 +106,13 @@ namespace Datenbank_RPG.Controllers
                 addPlayerCommand.Parameters[3].Value = player.classId;
 
                 addPlayerCommand.ExecuteNonQuery();
-
+                ViewData["route"] = RouteData.Values;
                 connection.Close();
 
                 return Redirect("/Player/Index");
             }
         }
-
+        [Breadcrumb("/Edit Player")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -115,7 +123,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.Parameters[0].Value = id;
 
                 var listEnemy = sql.cmds.GetPlayers(displayPlayersCommand);
-
+                ViewData["route"] = RouteData.Values;
                 Console.WriteLine();
 
                 return View(listEnemy[0]);
@@ -151,7 +159,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.ExecuteNonQuery();
 
                 connection.Close();
-
+                ViewData["route"] = RouteData.Values;
                 return Redirect("/Player/Index");
             }
         }
@@ -169,7 +177,7 @@ namespace Datenbank_RPG.Controllers
                 displayPlayersCommand.ExecuteNonQuery();
 
                 connection.Close();
-
+                ViewData["route"] = RouteData.Values;
                 Console.WriteLine();
 
                 return Redirect("/Player");

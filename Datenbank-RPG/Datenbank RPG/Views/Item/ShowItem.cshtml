@@ -4,6 +4,15 @@
 @{
     ViewData["Title"] = "Datenbank Rollenspiel!";
     sql.Item selitem = ViewData["Item"] as sql.Item;
+
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
 <style>
     .item {
@@ -12,7 +21,6 @@
     }
 
 </style>
-
 <h2>PLAYER: @selitem.Name (Id: @selitem.Id)</h2>
 
 NAME: @selitem.Name
@@ -23,8 +31,6 @@ COST: @selitem.Gold
 <br>
 POWER: @selitem.ItemPower
 <br>
-<br>
-<label class="dropDownContainer">
-    <li class="dropDownSquare">@Html.ActionLink($"SET AMOUNT", "Edit", new { @id = selitem.Id })</li> <br></br>
-    <li class="dropDownSquare">@Html.ActionLink($"REMOVE", "Delete", new { @id = selitem.Id })</li> <br></br>
-</label>
+<a class="material-symbols-outlined" href="@Url.Action("Edit", "Item", new { @id = @selitem.Id })">edit</a>
+<a class="material-symbols-outlined" href="@Url.Action("Delete", "Item", new { @id = @selitem.Id })">delete</a>
+<br></br>

@@ -5,7 +5,14 @@
 *@
 @{
     ViewBag.Title = "Create a Player";
-
+    if (Convert.ToBoolean(Context.Session.GetInt32("_DarkMode")))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layout_Alt";
+    }
 }
 <style>
     button {
@@ -20,7 +27,6 @@
     }
 
 </style>
-
 
 <h2 style="display: inline">Player CREATION</h2>
 
